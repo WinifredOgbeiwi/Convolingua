@@ -1,4 +1,5 @@
-const SITE_URL = 'https://convolingua.com'
+import { SITE_URL } from '../config/site.js'
+
 const SITE_NAME = 'ConvoLingua'
 
 export const DEFAULT_SEO = {

@@ -1,9 +1,8 @@
 import emailjs from '@emailjs/browser'
+import { BOOKING_URL } from '../config/site.js'
 
 const COMPANY_NAME = import.meta.env.VITE_COMPANY_NAME || 'ConvoLingua'
-const BOOKING_LINK =
-  import.meta.env.VITE_BOOKING_LINK ||
-  `${typeof window !== 'undefined' ? window.location.origin : 'https://convolingua.com'}/contact`
+const BOOKING_LINK = import.meta.env.VITE_BOOKING_LINK || BOOKING_URL
 const CONTACT_INBOX =
   import.meta.env.VITE_CONTACT_EMAIL || 'hello@convolingua.com'
 
