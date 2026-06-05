@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Logo from '../Logo'
-import { HiBars3, HiXMark } from 'react-icons/hi2'
+import { HiMenu, HiX } from 'react-icons/hi'
 
 const NAV_LINKS = [
   { to: '/', label: 'Home', end: true },
   { to: '/about', label: 'About' },
   { to: '/courses', label: 'Courses' },
-  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Header() {
@@ -33,8 +32,8 @@ export default function Header() {
           </nav>
 
           <div className="header-actions">
-            <NavLink to="/contact" className="btn btn-primary">
-              Book assessment
+            <NavLink to="/contact" className="btn btn-primary header-cta">
+              Contact
             </NavLink>
             <button
               type="button"
@@ -43,7 +42,7 @@ export default function Header() {
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               onClick={() => setMenuOpen((o) => !o)}
             >
-              {menuOpen ? <HiXMark size={24} aria-hidden /> : <HiBars3 size={24} aria-hidden />}
+              {menuOpen ? <HiX size={24} aria-hidden /> : <HiMenu size={24} aria-hidden />}
             </button>
           </div>
         </div>
@@ -63,10 +62,10 @@ export default function Header() {
         ))}
         <NavLink
           to="/contact"
-          className="btn btn-primary btn-block"
+          className="btn btn-primary header-cta text-white"
           onClick={() => setMenuOpen(false)}
         >
-          Book assessment
+          Contact
         </NavLink>
       </nav>
     </>

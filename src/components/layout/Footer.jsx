@@ -11,6 +11,7 @@ const FOOTER_LINKS = {
   Company: [
     { label: 'About us', to: '/about' },
     { label: 'Our method', to: '/about#method' },
+    { label: 'Free assessment', to: '/assessment' },
     { label: 'Contact', to: '/contact' },
   ],
 }

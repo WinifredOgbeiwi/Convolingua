@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { IMAGES } from '../../utilities'
-import { HiCheck } from 'react-icons/hi2'
+import { HiCheck } from 'react-icons/hi'
 import Animate from '../Animate'
 
 const BENEFITS = [

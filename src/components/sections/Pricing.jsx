@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { HiCheck } from 'react-icons/hi2'
+import { HiCheck } from 'react-icons/hi'
 import Animate from '../Animate'
 
 const PLANS = [
@@ -89,10 +89,10 @@ export default function Pricing() {
                 ))}
               </ul>
               <Link
-                to="/contact"
+                to={plan.name === 'Enterprise' ? '/contact' : '/assessment'}
                 className={`btn btn-block ${plan.featured ? 'btn-primary' : 'btn-ghost'}`}
               >
-                {plan.cta}
+                {plan.name === 'Enterprise' ? plan.cta : 'Take free assessment'}
               </Link>
             </Animate>
           ))}

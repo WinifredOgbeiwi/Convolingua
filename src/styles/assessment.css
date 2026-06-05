@@ -1,0 +1,336 @@
+.assessment {
+  padding: 48px 0 96px;
+  background: linear-gradient(180deg, var(--primary-light) 0%, var(--bg) 40%);
+  min-height: calc(100svh - var(--header-h) - 120px);
+}
+
+.assessment-inner {
+  max-width: 640px;
+}
+
+.assessment-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.assessment-header h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  color: var(--text-heading);
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+
+.assessment-header p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+  color: var(--text);
+}
+
+.assessment-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-lg);
+}
+
+.assessment-progress {
+  margin-bottom: 32px;
+}
+
+.assessment-progress-bar {
+  height: 8px;
+  background: var(--primary-light);
+  border-radius: 100px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.assessment-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #7b7ff6);
+  border-radius: 100px;
+  transition: width 0.35s ease;
+}
+
+.assessment-progress-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.assessment-step h2 {
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 700;
+  color: var(--text-heading);
+  line-height: 1.3;
+  margin: 0 0 12px;
+}
+
+.assessment-step-desc {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.assessment-question-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 8px;
+}
+
+.assessment-options {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.assessment-option {
+  width: 100%;
+  text-align: left;
+  padding: 16px 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-heading);
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    transform 0.15s;
+}
+
+.assessment-option:hover {
+  border-color: var(--primary-border);
+  background: var(--primary-light);
+}
+
+.assessment-option.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 3px var(--primary-muted);
+}
+
+.assessment-back {
+  background: none;
+  border: none;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.assessment-back:hover:not(:disabled) {
+  color: var(--primary);
+}
+
+.assessment-back:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.assessment-level-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  background: var(--primary-light);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-lg);
+}
+
+.assessment-level {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.assessment-cefr {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.assessment-result-simple {
+  text-align: center;
+}
+
+.assessment-result-simple .assessment-level-badge {
+  align-items: center;
+  width: 100%;
+}
+
+.assessment-result-summary {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+
+.assessment-email-prompt {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0 0 24px;
+  padding: 16px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.assessment-result-simple .assessment-result-actions {
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+
+.assessment-plan {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.assessment-plan h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin: 0 0 8px;
+}
+
+.assessment-plan h3:not(:first-child) {
+  margin-top: 16px;
+}
+
+.assessment-result-detail {
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+
+.assessment-recommend-box {
+  background: var(--primary-light);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.assessment-recommend-box h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.assessment-recommend-box > p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-heading);
+}
+
+.assessment-plan ul {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.assessment-plan li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.assessment-recommend {
+  font-size: 15px;
+  margin: 0 0 24px;
+}
+
+.assessment-result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.assessment-email-report {
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+
+.assessment-email-report h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin: 0 0 8px;
+}
+
+.assessment-email-report > p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.assessment-success {
+  font-size: 14px;
+  color: #059669;
+  margin: 12px 0 0;
+  font-weight: 500;
+}
+
+.assessment-error {
+  font-size: 14px;
+  color: #dc2626;
+  margin: 8px 0 0;
+}
+
+.assessment-config-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+  line-height: 1.5;
+}
+
+.assessment-config-hint code {
+  font-size: 12px;
+  background: var(--bg-subtle);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+  .assessment-card {
+    padding: 28px 20px;
+  }
+
+  .assessment-result-actions {
+    flex-direction: column;
+  }
+
+  .assessment-result-actions .btn {
+    width: 100%;
+  }
+}

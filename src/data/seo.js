@@ -34,7 +34,13 @@ export const PAGE_SEO = {
   contact: {
     title: `Contact Us — ${SITE_NAME}`,
     description:
-      'Book a free fluency assessment or speak with our team. Flexible scheduling across time zones.',
+      'Get in touch about courses, corporate training, or coaching. Flexible scheduling across time zones.',
     path: '/contact',
+  },
+  assessment: {
+    title: `Free English Level Assessment — ${SITE_NAME}`,
+    description:
+      'Take our free English placement test — 10 random questions from a bank of 100. Get your score and personalized plan by email.',
+    path: '/assessment',
   },
 }

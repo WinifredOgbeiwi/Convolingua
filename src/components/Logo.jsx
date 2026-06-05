@@ -4,7 +4,7 @@ import { IMAGES } from '../utilities'
 export default function Logo({ className = '' }) {
   return (
     <Link to="/" className={`logo ${className}`.trim()} aria-label="ConvoLingua home">
-      <img src={IMAGES.Logo} alt="ConvoLingua" className="logo-img" width={140} height={40} />
+      <img src={IMAGES.Logo} alt="ConvoLingua" className="logo-img" width={196} height={56} />
     </Link>
   )
 }

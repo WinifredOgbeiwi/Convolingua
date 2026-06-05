@@ -14,20 +14,20 @@ export default function CTABand() {
                 alt="English coach in a live session"
                 loading="lazy"
               />
-              <div className="cta-card-badge">Free assessment</div>
+              <div className="cta-card-badge">Free test</div>
             </div>
 
             <div className="cta-card-content">
               <span className="section-label">Get started today</span>
-              <h2>Take the first step toward fluent, confident English</h2>
+              <h2>Discover your English level in minutes</h2>
               <p>
-                Book a complimentary 30-minute session with a senior coach. We will
-                assess your goals, identify gaps, and recommend the right program—no
-                obligation.
+                Take our free assessment to gauge your professional English skills.
+                Receive an instant result plus a detailed report and personalized plan
+                by email.
               </p>
               <div className="cta-card-actions">
-                <Link to="/contact" className="btn btn-primary btn-lg">
-                  Book free assessment
+                <Link to="/assessment" className="btn btn-primary btn-lg">
+                  Free assessment test
                 </Link>
                 <Link to="/courses" className="btn btn-outline btn-lg">
                   Browse courses

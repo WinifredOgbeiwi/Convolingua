@@ -1,0 +1,58 @@
+<!--
+  CONTACT FORM — EmailJS setup
+
+  Settings tab:
+    To email:     your inbox (e.g. hello@convolingua.com) OR {{to_email}}
+    Reply to:     {{user_email}}
+    From name:    {{company_name}}
+
+  Subject: {{subject}}
+
+  Variables: {{from_name}} {{first_name}} {{last_name}} {{user_email}}
+  {{company}} {{interest}} {{message}} {{company_name}}
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0;padding:0;background:#f5f7fb;font-family:Arial,Helvetica,sans-serif;">
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f5f7fb;padding:24px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:560px;background:#fff;border-radius:12px;overflow:hidden;">
+
+          <tr>
+            <td style="background:#5257f2;padding:24px;color:#fff;text-align:center;">
+              <div style="font-size:18px;font-weight:bold;">New contact inquiry</div>
+              <div style="font-size:13px;opacity:0.9;margin-top:4px;">{{company_name}} website</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:24px;color:#111827;font-size:14px;line-height:1.6;">
+
+              <p style="margin:0 0 16px;"><strong>From:</strong> {{from_name}}</p>
+              <p style="margin:0 0 8px;"><strong>Email:</strong> {{user_email}}</p>
+              <p style="margin:0 0 8px;"><strong>Company:</strong> {{company}}</p>
+              <p style="margin:0 0 16px;"><strong>Interested in:</strong> {{interest}}</p>
+
+              <hr style="border:none;border-top:1px solid #e5e7eb;margin:16px 0;">
+
+              <p style="margin:0 0 8px;font-size:12px;color:#6b7280;text-transform:uppercase;font-weight:bold;">Message</p>
+              <div style="background:#f9fafb;border-radius:8px;padding:16px;white-space:pre-line;color:#374151;">{{message}}</div>
+
+              <p style="margin:20px 0 0;font-size:12px;color:#9ca3af;">Reply directly to this person using Reply in your email client.</p>
+
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

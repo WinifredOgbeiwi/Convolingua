@@ -1,29 +1,37 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { IMAGES } from '../../utilities'
 import Animate from '../Animate'
 
 const HERO_CARDS = [
   {
-    label: 'Fluency progress',
-    value: 'C1 → C2',
-    barWidth: '78%',
-    meta: 'Average improvement in 16 weeks',
+    label: 'Learning format',
+    value: 'Live 1-on-1',
+    meta: 'Speak with a dedicated coach and get feedback tailored to your goals.',
   },
   {
-    label: 'Lessons completed',
-    value: '2,400+',
-    barWidth: '92%',
-    meta: 'This month across all programs',
+    label: 'Scheduling',
+    value: 'Flexible',
+    meta: 'Book sessions around your calendar, including evenings and weekends.',
   },
   {
-    label: 'Expert coaches online',
-    value: '48',
-    meta: 'Available now for live sessions',
+    label: 'Program focus',
+    value: 'Business English',
+    meta: 'Meetings, presentations, email, and client communication.',
     avatars: true,
   },
 ]
 
 export default function Hero() {
+  const navigate = useNavigate()
+  const [heroEmail, setHeroEmail] = useState('')
+
+  function handleHeroSubmit(e) {
+    e.preventDefault()
+    const trimmed = heroEmail.trim()
+    navigate(trimmed ? `/assessment?email=${encodeURIComponent(trimmed)}` : '/assessment')
+  }
+
   return (
     <section className="hero">
       <div className="container">
@@ -51,12 +59,7 @@ export default function Hero() {
           </Animate>
 
           <Animate delay={240}>
-            <form
-              className="hero-form"
-              onSubmit={(e) => {
-                e.preventDefault()
-              }}
-            >
+            <form className="hero-form" onSubmit={handleHeroSubmit}>
               <label htmlFor="hero-email" className="sr-only">
                 Work email
               </label>
@@ -64,14 +67,16 @@ export default function Hero() {
                 id="hero-email"
                 type="email"
                 placeholder="Enter your work email"
+                value={heroEmail}
+                onChange={(e) => setHeroEmail(e.target.value)}
                 required
               />
-              <Link to="/contact" className="btn btn-primary">
-                Start free assessment
-              </Link>
+              <button type="submit" className="btn btn-primary">
+                Free assessment test
+              </button>
             </form>
             <p className="hero-note">
-              Free 30-minute fluency assessment · No credit card required
+              Gauge your English level in minutes · Personalized plan by email
             </p>
           </Animate>
         </div>
@@ -81,19 +86,11 @@ export default function Hero() {
             <Animate key={card.label} className="hero-card" delay={320 + i * 80}>
               <div className="hero-card-label">{card.label}</div>
               <div className="hero-card-value">{card.value}</div>
-              {card.barWidth ? (
-                <div className="hero-card-bar">
-                  <div
-                    className="hero-card-bar-fill"
-                    style={{ width: card.barWidth }}
-                  />
-                </div>
-              ) : (
+              {card.avatars && (
                 <div className="hero-card-avatars">
                   <img src={IMAGES.Teacher} alt="" width={32} height={32} />
                   <img src={IMAGES.Piotr} alt="" width={32} height={32} />
                   <img src={IMAGES.Zuzzana} alt="" width={32} height={32} />
-                  <img src={IMAGES.Professional} alt="" width={32} height={32} />
                 </div>
               )}
               <p className="hero-card-meta">{card.meta}</p>
