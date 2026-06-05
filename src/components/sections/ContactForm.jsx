@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HiCheckCircle } from 'react-icons/hi'
-import { sendContactForm, isContactEmailJsConfigured } from '../../services/emailjs'
+import { sendContactForm } from '../../services/emailjs'
+import { getContactFormError } from '../../utils/formErrors'
 
 const INTEREST_OPTIONS = [
   { value: 'assessment', label: 'Free assessment test' },
@@ -18,10 +19,16 @@ export default function ContactForm() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    setStatus('sending')
     setError('')
 
     const form = e.target
+
+    if (!form.checkValidity()) {
+      form.reportValidity()
+      return
+    }
+
+    setStatus('sending')
     const data = new FormData(form)
 
     try {
@@ -37,10 +44,7 @@ export default function ContactForm() {
       form.reset()
     } catch (err) {
       setStatus('error')
-      setError(
-        err?.message ||
-          'We could not send your message. Please try again or email us directly.',
-      )
+      setError(getContactFormError(err))
     }
   }
 
@@ -78,7 +82,7 @@ export default function ContactForm() {
         <p>Fill in the form and we will get back to you shortly.</p>
       </div>
 
-      <form className="contact-form-fields" onSubmit={handleSubmit} noValidate>
+      <form className="contact-form-fields" onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-field">
             <label htmlFor="first-name">First name</label>
@@ -157,13 +161,6 @@ export default function ContactForm() {
         {status === 'error' && (
           <p className="contact-form-error" role="alert">
             {error}
-            {!isContactEmailJsConfigured() && (
-              <>
-                {' '}
-                Add <code>VITE_EMAILJS_CONTACT_TEMPLATE_ID</code> to your{' '}
-                <code>.env</code> file.
-              </>
-            )}
           </p>
         )}
 

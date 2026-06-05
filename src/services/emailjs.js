@@ -113,21 +113,24 @@ export async function sendContactForm({
   interest,
   message,
 }) {
-  const userEmail = email?.trim()
-  if (!userEmail) {
-    throw new Error('A valid email address is required.')
+  const userEmail = String(email ?? '').trim()
+  if (!userEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+    throw new Error('Please enter a valid email address.')
   }
 
   const { serviceId, publicKey } = getSharedConfig()
   const templateId = import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID
 
   if (!serviceId || !templateId || !publicKey) {
-    throw new Error(
-      'EmailJS is not configured for contact. Add VITE_EMAILJS_CONTACT_TEMPLATE_ID to your .env file.',
-    )
+    if (import.meta.env.DEV) {
+      console.error(
+        'Contact EmailJS missing env: VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_PUBLIC_KEY, VITE_EMAILJS_CONTACT_TEMPLATE_ID',
+      )
+    }
+    throw new Error('Contact form is temporarily unavailable.')
   }
 
-  const fullName = `${firstName.trim()} ${lastName.trim()}`.trim()
+  const fullName = `${String(firstName ?? '').trim()} ${String(lastName ?? '').trim()}`.trim()
   const interestLabel = INTEREST_LABELS[interest] || interest || '—'
 
   return emailjs.send(
