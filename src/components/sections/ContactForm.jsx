@@ -3,17 +3,12 @@ import { Link } from 'react-router-dom'
 import { HiCheckCircle } from 'react-icons/hi'
 import { sendContactForm } from '../../services/emailjs'
 import { getContactFormError } from '../../utils/formErrors'
+import { useTranslation } from '../../i18n/useTranslation'
 
-const INTEREST_OPTIONS = [
-  { value: 'assessment', label: 'Free assessment test' },
-  { value: 'business', label: 'Business English' },
-  { value: 'corporate', label: 'Corporate training' },
-  { value: 'exam', label: 'Exam preparation' },
-  { value: 'executive', label: 'Executive coaching' },
-  { value: 'other', label: 'Not sure yet' },
-]
+const INTEREST_KEYS = ['assessment', 'business', 'corporate', 'exam', 'executive', 'other']
 
 export default function ContactForm() {
+  const { t } = useTranslation()
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
 
@@ -30,6 +25,7 @@ export default function ContactForm() {
 
     setStatus('sending')
     const data = new FormData(form)
+    const interestKey = data.get('interest')
 
     try {
       await sendContactForm({
@@ -37,7 +33,8 @@ export default function ContactForm() {
         lastName: data.get('lastName'),
         email: data.get('email'),
         company: data.get('company'),
-        interest: data.get('interest'),
+        interest: interestKey,
+        interestLabel: t(`contact.interests.${interestKey}`),
         message: data.get('message'),
       })
       setStatus('success')
@@ -54,21 +51,18 @@ export default function ContactForm() {
         <div className="contact-success-icon" aria-hidden>
           <HiCheckCircle size={56} />
         </div>
-        <h3>Message sent</h3>
-        <p>
-          Thank you for reaching out. We will reply within one business day with next
-          steps for your program or assessment.
-        </p>
+        <h3>{t('contact.successTitle')}</h3>
+        <p>{t('contact.successText')}</p>
         <div className="contact-success-actions">
           <Link to="/assessment" className="btn btn-primary">
-            Take free assessment
+            {t('contact.takeAssessment')}
           </Link>
           <button
             type="button"
             className="btn btn-outline"
             onClick={() => setStatus('idle')}
           >
-            Send another message
+            {t('contact.sendAnother')}
           </button>
         </div>
       </div>
@@ -78,14 +72,14 @@ export default function ContactForm() {
   return (
     <div className="contact-panel-body">
       <div className="contact-panel-form-header">
-        <h2>Send a message</h2>
-        <p>Fill in the form and we will get back to you shortly.</p>
+        <h2>{t('contact.formTitle')}</h2>
+        <p>{t('contact.formLead')}</p>
       </div>
 
       <form className="contact-form-fields" onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-field">
-            <label htmlFor="first-name">First name</label>
+            <label htmlFor="first-name">{t('contact.firstName')}</label>
             <input
               id="first-name"
               name="firstName"
@@ -95,7 +89,7 @@ export default function ContactForm() {
             />
           </div>
           <div className="form-field">
-            <label htmlFor="last-name">Last name</label>
+            <label htmlFor="last-name">{t('contact.lastName')}</label>
             <input
               id="last-name"
               name="lastName"
@@ -107,7 +101,7 @@ export default function ContactForm() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="contact-email">Work email</label>
+          <label htmlFor="contact-email">{t('contact.workEmail')}</label>
           <input
             id="contact-email"
             name="email"
@@ -118,7 +112,7 @@ export default function ContactForm() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="company">Company (optional)</label>
+          <label htmlFor="company">{t('contact.company')}</label>
           <input
             id="company"
             name="company"
@@ -128,7 +122,7 @@ export default function ContactForm() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="interest">I am interested in</label>
+          <label htmlFor="interest">{t('contact.interest')}</label>
           <select
             id="interest"
             name="interest"
@@ -137,23 +131,23 @@ export default function ContactForm() {
             disabled={status === 'sending'}
           >
             <option value="" disabled>
-              Select a program
+              {t('contact.selectProgram')}
             </option>
-            {INTEREST_OPTIONS.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
+            {INTEREST_KEYS.map((key) => (
+              <option key={key} value={key}>
+                {t(`contact.interests.${key}`)}
               </option>
             ))}
           </select>
         </div>
 
         <div className="form-field form-field-grow">
-          <label htmlFor="message">Message</label>
+          <label htmlFor="message">{t('contact.message')}</label>
           <textarea
             id="message"
             name="message"
             rows={4}
-            placeholder="Tell us about your goals, timeline, and current level..."
+            placeholder={t('contact.messagePlaceholder')}
             disabled={status === 'sending'}
           />
         </div>
@@ -169,7 +163,7 @@ export default function ContactForm() {
           className="btn btn-primary btn-lg btn-block contact-form-submit"
           disabled={status === 'sending'}
         >
-          {status === 'sending' ? 'Sending…' : 'Send message'}
+          {status === 'sending' ? t('contact.sending') : t('contact.send')}
         </button>
       </form>
     </div>

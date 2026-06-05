@@ -5,11 +5,14 @@ import CorporateTraining from '../components/sections/CorporateTraining'
 import FeatureGrid from '../components/sections/FeatureGrid'
 import Testimonials from '../components/sections/Testimonials'
 import CTABand from '../components/sections/CTABand'
-import { PAGE_SEO } from '../data/seo'
-import { HOME_COURSES_PREVIEW } from '../data/courses'
-
+import { getLocalizedCourses } from '../i18n/localizeCourses'
+import { getPageSeo } from '../i18n/getPageSeo'
+import { useTranslation } from '../i18n/useTranslation'
 export default function HomePage() {
-  const seo = PAGE_SEO.home
+  const { t } = useTranslation()
+  const seo = getPageSeo('home', t)
+  const courses = getLocalizedCourses(t).slice(0, 3)
+
   return (
     <>
       <SEO title={seo.title} description={seo.description} path={seo.path} />
@@ -17,9 +20,9 @@ export default function HomePage() {
       <LearningPillars />
       <CorporateTraining />
       <FeatureGrid
-        courses={HOME_COURSES_PREVIEW}
+        courses={courses}
         showViewAll
-        title="Popular programs for professionals"
+        title={t('courses.homeTitle')}
       />
       <Testimonials />
       <CTABand />

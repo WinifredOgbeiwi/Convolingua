@@ -1,21 +1,28 @@
 import { Link } from 'react-router-dom'
 import Animate from '../Animate'
+import { useTranslation } from '../../i18n/useTranslation'
 
 export default function FeatureGrid({
   courses,
-  title = 'Programs built for how you work',
-  description = 'Every track pairs live coaching with role-specific scenarios—so you practice the English you actually use at work.',
-  label = 'Learning tracks',
+  title,
+  description,
+  label,
   showViewAll = false,
   id,
 }) {
+  const { t } = useTranslation()
+
+  const sectionLabel = label ?? t('courses.sectionLabel')
+  const sectionTitle = title ?? t('courses.sectionTitle')
+  const sectionDesc = description ?? t('courses.sectionDesc')
+
   return (
     <section id={id} className="section">
       <div className="container">
         <Animate className="section-header">
-          <span className="section-label">{label}</span>
-          <h2 className="section-title">{title}</h2>
-          <p className="section-desc">{description}</p>
+          <span className="section-label">{sectionLabel}</span>
+          <h2 className="section-title">{sectionTitle}</h2>
+          <p className="section-desc">{sectionDesc}</p>
         </Animate>
 
         <div className="feature-grid">
@@ -35,7 +42,7 @@ export default function FeatureGrid({
         {showViewAll && (
           <Animate className="section-cta-row">
             <Link to="/courses" className="btn btn-primary">
-              View all courses
+              {t('courses.viewAll')}
             </Link>
           </Animate>
         )}

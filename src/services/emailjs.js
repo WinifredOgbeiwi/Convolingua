@@ -111,6 +111,7 @@ export async function sendContactForm({
   email,
   company,
   interest,
+  interestLabel,
   message,
 }) {
   const userEmail = String(email ?? '').trim()
@@ -131,7 +132,8 @@ export async function sendContactForm({
   }
 
   const fullName = `${String(firstName ?? '').trim()} ${String(lastName ?? '').trim()}`.trim()
-  const interestLabel = INTEREST_LABELS[interest] || interest || '—'
+  const interestText =
+    interestLabel || INTEREST_LABELS[interest] || interest || '—'
 
   return emailjs.send(
     serviceId,
@@ -145,7 +147,7 @@ export async function sendContactForm({
       first_name: firstName.trim(),
       last_name: lastName.trim(),
       company: company?.trim() || '—',
-      interest: interestLabel,
+      interest: interestText,
       message: message?.trim() || '—',
       subject: `New contact inquiry — ${fullName}`,
       company_name: COMPANY_NAME,

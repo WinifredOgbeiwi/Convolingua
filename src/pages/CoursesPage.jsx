@@ -3,27 +3,31 @@ import PageHero from '../components/sections/PageHero'
 import FeatureGrid from '../components/sections/FeatureGrid'
 import Pricing from '../components/sections/Pricing'
 import CTABand from '../components/sections/CTABand'
-import { PAGE_SEO } from '../data/seo'
-import { COURSES } from '../data/courses'
+import { getPageSeo } from '../i18n/getPageSeo'
+import { getLocalizedCourses } from '../i18n/localizeCourses'
+import { useTranslation } from '../i18n/useTranslation'
 import { IMAGES } from '../utilities'
 
 export default function CoursesPage() {
-  const seo = PAGE_SEO.courses
+  const { t } = useTranslation()
+  const seo = getPageSeo('courses', t)
+  const courses = getLocalizedCourses(t)
+
   return (
     <>
       <SEO title={seo.title} description={seo.description} path={seo.path} />
       <PageHero
-        label="Courses"
-        title="Programs that fit your schedule and ambitions"
-        description="From business communication to exam prep—each course blends live coaching, structured practice, and measurable milestones."
+        label={t('coursesPage.heroLabel')}
+        title={t('coursesPage.heroTitle')}
+        description={t('coursesPage.heroDesc')}
         image={IMAGES.AllCourses}
       />
       <FeatureGrid
         id="courses-list"
-        courses={COURSES}
-        label="All programs"
-        title="Choose the path that matches your goals"
-        description="Flexible formats for individuals and teams. Every program includes live sessions and progress tracking."
+        courses={courses}
+        label={t('courses.pageLabel')}
+        title={t('courses.pageTitle')}
+        description={t('courses.pageDesc')}
       />
       <Pricing />
       <CTABand />

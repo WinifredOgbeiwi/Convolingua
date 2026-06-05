@@ -4,37 +4,40 @@ import SEO from '../components/SEO'
 import PageHero from '../components/sections/PageHero'
 import ContactForm from '../components/sections/ContactForm'
 import Animate from '../components/Animate'
-import { PAGE_SEO } from '../data/seo'
+import { getPageSeo } from '../i18n/getPageSeo'
+import { useTranslation } from '../i18n/useTranslation'
 import { IMAGES } from '../utilities'
 
-const CONTACT_INFO = [
-  {
-    icon: HiMail,
-    label: 'Email',
-    value: 'hello@convolingua.com',
-    href: 'mailto:hello@convolingua.com',
-  },
-  {
-    icon: HiClock,
-    label: 'Response time',
-    value: 'Within 1 business day',
-  },
-  {
-    icon: HiGlobeAlt,
-    label: 'Sessions',
-    value: 'Mon–Sat, global time zones',
-  },
-]
-
 export default function ContactPage() {
-  const seo = PAGE_SEO.contact
+  const { t } = useTranslation()
+  const seo = getPageSeo('contact', t)
+
+  const contactInfo = [
+    {
+      icon: HiMail,
+      label: t('contact.email'),
+      value: 'hello@convolingua.com',
+      href: 'mailto:hello@convolingua.com',
+    },
+    {
+      icon: HiClock,
+      label: t('contact.responseTime'),
+      value: t('contact.responseValue'),
+    },
+    {
+      icon: HiGlobeAlt,
+      label: t('contact.sessions'),
+      value: t('contact.sessionsValue'),
+    },
+  ]
+
   return (
     <>
       <SEO title={seo.title} description={seo.description} path={seo.path} />
       <PageHero
-        label="Contact"
-        title="Let's plan your next step in English"
-        description="Request a free assessment, ask about corporate programs, or speak with our team."
+        label={t('contact.heroLabel')}
+        title={t('contact.heroTitle')}
+        description={t('contact.heroDesc')}
         image={IMAGES.Contact}
       />
 
@@ -43,14 +46,11 @@ export default function ContactPage() {
           <div className="contact-layout">
             <Animate className="contact-panel contact-panel-info">
               <div className="contact-panel-body">
-                <h2>Get in touch</h2>
-                <p className="contact-panel-lead">
-                  Tell us about your goals and we will match you with the right coach
-                  and program. Corporate and team inquiries are welcome.
-                </p>
+                <h2>{t('contact.getInTouch')}</h2>
+                <p className="contact-panel-lead">{t('contact.lead')}</p>
 
                 <ul className="contact-details">
-                  {CONTACT_INFO.map((item) => {
+                  {contactInfo.map((item) => {
                     const Icon = item.icon
                     return (
                       <li key={item.label}>
@@ -73,9 +73,9 @@ export default function ContactPage() {
                 </ul>
 
                 <div className="contact-panel-footer">
-                  <p>Prefer a quick level check first?</p>
+                  <p>{t('contact.preferTest')}</p>
                   <Link to="/assessment" className="btn btn-ghost">
-                    Take the free assessment test
+                    {t('contact.assessmentLink')}
                   </Link>
                 </div>
               </div>

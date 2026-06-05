@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import SEO from '../components/SEO'
-import { PAGE_SEO } from '../data/seo'
+import { getPageSeo } from '../i18n/getPageSeo'
+import { useTranslation } from '../i18n/useTranslation'
 import {
   ASSESSMENT_QUESTION_COUNT,
   selectRandomQuestions,
@@ -14,7 +15,8 @@ import {
 import '../styles/assessment.css'
 
 export default function AssessmentPage() {
-  const seo = PAGE_SEO.assessment
+  const { t } = useTranslation()
+  const seo = getPageSeo('assessment', t)
   const [searchParams] = useSearchParams()
   const [step, setStep] = useState(0)
   const [name, setName] = useState('')
@@ -49,11 +51,11 @@ export default function AssessmentPage() {
     const trimmedName = name.trim()
 
     if (!trimmedName) {
-      setEmailError('Please enter your first name.')
+      setEmailError(t('assessment.errFirstName'))
       return
     }
     if (!trimmedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
-      setEmailError('Please enter a valid email address.')
+      setEmailError(t('assessment.errEmail'))
       return
     }
 
@@ -100,10 +102,7 @@ export default function AssessmentPage() {
       setSendStatus('sent')
     } catch (err) {
       setSendStatus('error')
-      setSendError(
-        err?.message ||
-          'Could not send the report. Please try again or contact us directly.',
-      )
+      setSendError(err?.message || t('assessment.sendError'))
     }
   }
 
@@ -114,13 +113,9 @@ export default function AssessmentPage() {
       <section className="assessment">
         <div className="container assessment-inner">
           <header className="assessment-header">
-            <span className="section-label">Free assessment</span>
-            <h1>English level test</h1>
-            <p>
-              Each session draws {ASSESSMENT_QUESTION_COUNT} random questions from our bank
-              of 100 professional English items. Get your score and a detailed report by
-              email.
-            </p>
+            <span className="section-label">{t('assessment.label')}</span>
+            <h1>{t('assessment.title')}</h1>
+            <p>{t('assessment.intro', { count: ASSESSMENT_QUESTION_COUNT })}</p>
           </header>
 
           <div className="assessment-card">
@@ -133,28 +128,30 @@ export default function AssessmentPage() {
               </div>
               <span className="assessment-progress-label">
                 {isResultStep
-                  ? 'Complete'
+                  ? t('assessment.progressComplete')
                   : step === 0
-                    ? 'Getting started'
-                    : `Step ${step + 1} of ${totalSteps - 1}`}
+                    ? t('assessment.progressStart')
+                    : t('assessment.progressStep', {
+                        current: step + 1,
+                        total: totalSteps - 1,
+                      })}
               </span>
             </div>
 
             {isEmailStep && (
               <form className="assessment-step" onSubmit={handleEmailSubmit}>
-                <h2>Before we begin</h2>
+                <h2>{t('assessment.beforeTitle')}</h2>
                 <p className="assessment-step-desc">
-                  Enter your details to start. You will get {ASSESSMENT_QUESTION_COUNT}{' '}
-                  different questions each time you take the test.
+                  {t('assessment.beforeDesc', { count: ASSESSMENT_QUESTION_COUNT })}
                 </p>
                 <div className="form-field">
-                  <label htmlFor="assessment-name">First name</label>
+                  <label htmlFor="assessment-name">{t('assessment.firstName')}</label>
                   <input
                     id="assessment-name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Your first name"
+                    placeholder={t('assessment.firstNamePlaceholder')}
                     autoComplete="given-name"
                     required
                   />
@@ -177,7 +174,7 @@ export default function AssessmentPage() {
                   )}
                 </div>
                 <button type="submit" className="btn btn-primary btn-lg btn-block">
-                  Start test
+                  {t('assessment.start')}
                 </button>
               </form>
             )}
@@ -204,7 +201,7 @@ export default function AssessmentPage() {
                   ))}
                 </ul>
                 <button type="button" className="assessment-back" onClick={handleBack}>
-                  Back
+                  {t('assessment.back')}
                 </button>
               </div>
             )}
@@ -214,17 +211,18 @@ export default function AssessmentPage() {
                 <div className="assessment-level-badge">
                   <span className="assessment-level">{result.level}</span>
                   <span className="assessment-cefr">
-                    Score: {result.score} / {result.maxScore}
+                    {t('assessment.score', {
+                      score: result.score,
+                      max: result.maxScore,
+                    })}
                   </span>
                 </div>
 
-                <h2>Your estimated level</h2>
+                <h2>{t('assessment.yourLevel')}</h2>
                 <p className="assessment-result-summary">{result.summary}</p>
 
                 <p className="assessment-email-prompt">
-                  Your full report — wrong answers with explanations, strengths, areas to
-                  improve, and a personalized plan — is ready to send to{' '}
-                  <strong>{email}</strong>.
+                  {t('assessment.reportReady')} <strong>{email}</strong>.
                 </p>
 
                 <button
@@ -234,42 +232,36 @@ export default function AssessmentPage() {
                   disabled={sendStatus === 'sending' || sendStatus === 'sent'}
                 >
                   {sendStatus === 'sending'
-                    ? 'Sending…'
+                    ? t('assessment.sending')
                     : sendStatus === 'sent'
-                      ? 'Report sent to your email'
-                      : 'Send detailed report to my email'}
+                      ? t('assessment.sent')
+                      : t('assessment.sendReport')}
                 </button>
 
                 {sendStatus === 'sent' && (
                   <p className="assessment-success" role="status">
-                    Check your inbox and spam folder for the full breakdown.
+                    {t('assessment.sentHint')}
                   </p>
                 )}
                 {sendStatus === 'error' && (
                   <p className="assessment-error" role="alert">
                     {sendError}
-                    {!isAssessmentEmailJsConfigured() && (
-                      <>
-                        {' '}
-                        Ensure EmailJS is configured and template <strong>To email</strong>{' '}
-                        is <code>{'{{email}}'}</code>.
-                      </>
-                    )}
                   </p>
                 )}
-                {!isAssessmentEmailJsConfigured() && sendStatus === 'idle' && (
-                  <p className="assessment-config-hint">
-                    Add EmailJS keys to <code>.env</code>. Set template <strong>To email</strong>{' '}
-                    to <code>{'{{email}}'}</code>.
-                  </p>
-                )}
+                {import.meta.env.DEV &&
+                  !isAssessmentEmailJsConfigured() &&
+                  sendStatus === 'idle' && (
+                    <p className="assessment-config-hint">
+                      {t('assessment.configHint', { email: '{{email}}' })}
+                    </p>
+                  )}
 
                 <div className="assessment-result-actions">
                   <Link to="/contact" className="btn btn-outline btn-lg">
-                    Book a free consultation
+                    {t('assessment.bookConsult')}
                   </Link>
                   <Link to={result.coursePath} className="btn btn-ghost btn-lg">
-                    View courses
+                    {t('assessment.viewCourses')}
                   </Link>
                 </div>
               </div>

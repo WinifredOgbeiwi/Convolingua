@@ -1,30 +1,15 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { IMAGES } from '../../utilities'
 import Animate from '../Animate'
-
-const HERO_CARDS = [
-  {
-    label: 'Learning format',
-    value: 'Live 1-on-1',
-    meta: 'Speak with a dedicated coach and get feedback tailored to your goals.',
-  },
-  {
-    label: 'Scheduling',
-    value: 'Flexible',
-    meta: 'Book sessions around your calendar, including evenings and weekends.',
-  },
-  {
-    label: 'Program focus',
-    value: 'Business English',
-    meta: 'Meetings, presentations, email, and client communication.',
-    avatars: true,
-  },
-]
+import { useTranslation } from '../../i18n/useTranslation'
 
 export default function Hero() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [heroEmail, setHeroEmail] = useState('')
+  const cards = t('hero.cards')
+  const heroCards = Array.isArray(cards) ? cards : []
 
   function handleHeroSubmit(e) {
     e.preventDefault()
@@ -39,54 +24,48 @@ export default function Hero() {
           <Animate>
             <div className="hero-badge">
               <span className="hero-badge-dot" />
-              Trusted by professionals worldwide
+              {t('hero.badge')}
             </div>
           </Animate>
 
           <Animate delay={80}>
             <h1>
-              Master professional English for the{' '}
-              <span>global stage</span>
+              {t('hero.title')}{' '}
+              <span>{t('hero.titleHighlight')}</span>
             </h1>
           </Animate>
 
           <Animate delay={160}>
-            <p className="hero-sub">
-              Live 1-on-1 coaching, industry-tailored curriculum, and real-world
-              practice for leaders who need confidence in boardrooms, negotiations,
-              and cross-border teams.
-            </p>
+            <p className="hero-sub">{t('hero.subtitle')}</p>
           </Animate>
 
           <Animate delay={240}>
             <form className="hero-form" onSubmit={handleHeroSubmit}>
               <label htmlFor="hero-email" className="sr-only">
-                Work email
+                {t('hero.emailLabel')}
               </label>
               <input
                 id="hero-email"
                 type="email"
-                placeholder="Enter your work email"
+                placeholder={t('hero.emailPlaceholder')}
                 value={heroEmail}
                 onChange={(e) => setHeroEmail(e.target.value)}
                 required
               />
               <button type="submit" className="btn btn-primary">
-                Free assessment test
+                {t('hero.cta')}
               </button>
             </form>
-            <p className="hero-note">
-              Gauge your English level in minutes · Personalized plan by email
-            </p>
+            <p className="hero-note">{t('hero.note')}</p>
           </Animate>
         </div>
 
         <div className="hero-cards">
-          {HERO_CARDS.map((card, i) => (
+          {heroCards.map((card, i) => (
             <Animate key={card.label} className="hero-card" delay={320 + i * 80}>
               <div className="hero-card-label">{card.label}</div>
               <div className="hero-card-value">{card.value}</div>
-              {card.avatars && (
+              {i === 2 && (
                 <div className="hero-card-avatars">
                   <img src={IMAGES.Teacher} alt="" width={32} height={32} />
                   <img src={IMAGES.Piotr} alt="" width={32} height={32} />
