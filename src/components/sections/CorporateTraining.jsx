@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
-import { IMAGES } from '../../utilities'
 import { HiCheck } from 'react-icons/hi'
 import Animate from '../Animate'
 import { useTranslation } from '../../i18n/useTranslation'
+import { IMAGES, getSectionCta } from '../../data/siteContent'
 
 export default function CorporateTraining() {
   const { t } = useTranslation()
   const benefits = t('corporate.benefits') || []
+  const cta = getSectionCta('corporate', t)
 
   return (
     <section className="section corporate-section">
@@ -36,8 +37,8 @@ export default function CorporateTraining() {
             ))}
           </ul>
 
-          <Link to="/contact" className="btn btn-primary btn-lg">
-            {t('corporate.cta')}
+          <Link to={cta.to} className={cta.className}>
+            {cta.label}
           </Link>
         </Animate>
       </div>

@@ -5,14 +5,19 @@ import FeatureSplit from '../components/sections/FeatureSplit'
 import LearningPillars from '../components/sections/LearningPillars'
 import CTABand from '../components/sections/CTABand'
 import Animate from '../components/Animate'
-import { getPageSeo } from '../i18n/getPageSeo'
+import {
+  getPageImage,
+  getPageSeo,
+  getSectionCta,
+  IMAGES,
+} from '../data/siteContent'
 import { useTranslation } from '../i18n/useTranslation'
-import { IMAGES } from '../utilities'
 
 export default function AboutPage() {
   const { t } = useTranslation()
   const seo = getPageSeo('about', t)
   const values = t('about.values') || []
+  const talkCta = getSectionCta('aboutTalk', t)
 
   return (
     <>
@@ -21,7 +26,7 @@ export default function AboutPage() {
         label={t('about.heroLabel')}
         title={t('about.heroTitle')}
         description={t('about.heroDesc')}
-        image={IMAGES.About}
+        image={getPageImage('about')}
       />
 
       <section className="section">
@@ -60,8 +65,8 @@ export default function AboutPage() {
             ))}
           </div>
           <Animate className="section-cta-row">
-            <Link to="/contact" className="btn btn-primary btn-lg">
-              {t('about.talkCta')}
+            <Link to={talkCta.to} className={talkCta.className}>
+              {talkCta.label}
             </Link>
           </Animate>
         </div>

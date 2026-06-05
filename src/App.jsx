@@ -5,6 +5,8 @@ import AboutPage from './pages/AboutPage'
 import CoursesPage from './pages/CoursesPage'
 import ContactPage from './pages/ContactPage'
 import AssessmentPage from './pages/AssessmentPage'
+import PrivacyPage from './pages/PrivacyPage'
+import TermsPage from './pages/TermsPage'
 import './styles/landing.css'
 import './styles/animations.css'
 
@@ -18,6 +20,8 @@ export default function App() {
           <Route path="courses" element={<CoursesPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="assessment" element={<AssessmentPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="terms" element={<TermsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

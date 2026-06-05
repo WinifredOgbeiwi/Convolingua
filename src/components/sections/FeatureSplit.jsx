@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
-import { IMAGES } from '../../utilities'
 import { HiCheck } from 'react-icons/hi'
 import Animate from '../Animate'
 import { useTranslation } from '../../i18n/useTranslation'
+import { IMAGES, getSectionCta } from '../../data/siteContent'
 
 export default function FeatureSplit({ showCta = true }) {
   const { t } = useTranslation()
   const benefits = t('method.benefits') || []
+  const cta = getSectionCta('method', t)
 
   return (
     <section id="method" className="section split">
@@ -32,8 +33,8 @@ export default function FeatureSplit({ showCta = true }) {
           </ul>
 
           {showCta && (
-            <Link to="/courses" className="btn btn-primary btn-lg">
-              {t('method.cta')}
+            <Link to={cta.to} className={cta.className}>
+              {cta.label}
             </Link>
           )}
         </Animate>

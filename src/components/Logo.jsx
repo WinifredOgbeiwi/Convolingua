@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { IMAGES } from '../utilities'
+import { IMAGES } from '../data/siteContent'
 
 export default function Logo({ className = '' }) {
   return (

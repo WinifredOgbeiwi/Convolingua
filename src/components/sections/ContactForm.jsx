@@ -4,8 +4,7 @@ import { HiCheckCircle } from 'react-icons/hi'
 import { sendContactForm } from '../../services/emailjs'
 import { getContactFormError } from '../../utils/formErrors'
 import { useTranslation } from '../../i18n/useTranslation'
-
-const INTEREST_KEYS = ['assessment', 'business', 'corporate', 'exam', 'executive', 'other']
+import { CONTACT_FORM_INTERESTS, getContactFormSuccessCta } from '../../data/siteContent'
 
 export default function ContactForm() {
   const { t } = useTranslation()
@@ -46,6 +45,7 @@ export default function ContactForm() {
   }
 
   if (status === 'success') {
+    const successCta = getContactFormSuccessCta(t)
     return (
       <div className="contact-panel-body contact-panel-success">
         <div className="contact-success-icon" aria-hidden>
@@ -54,8 +54,8 @@ export default function ContactForm() {
         <h3>{t('contact.successTitle')}</h3>
         <p>{t('contact.successText')}</p>
         <div className="contact-success-actions">
-          <Link to="/assessment" className="btn btn-primary">
-            {t('contact.takeAssessment')}
+          <Link to={successCta.to} className={successCta.className}>
+            {successCta.label}
           </Link>
           <button
             type="button"
@@ -133,7 +133,7 @@ export default function ContactForm() {
             <option value="" disabled>
               {t('contact.selectProgram')}
             </option>
-            {INTEREST_KEYS.map((key) => (
+            {CONTACT_FORM_INTERESTS.map((key) => (
               <option key={key} value={key}>
                 {t(`contact.interests.${key}`)}
               </option>
@@ -160,7 +160,7 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          className="btn btn-primary btn-lg btn-block contact-form-submit"
+          className="btn btn-primary btn-lg btn-block contact-form-submit contact-panel-cta"
           disabled={status === 'sending'}
         >
           {status === 'sending' ? t('contact.sending') : t('contact.send')}

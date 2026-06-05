@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { IMAGES } from '../../utilities'
+import { IMAGES } from '../../data/siteContent'
 import Animate from '../Animate'
 import { useTranslation } from '../../i18n/useTranslation'
 

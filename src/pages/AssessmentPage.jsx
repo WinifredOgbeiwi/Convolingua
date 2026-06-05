@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import SEO from '../components/SEO'
-import { getPageSeo } from '../i18n/getPageSeo'
+import { getPageSeo } from '../data/siteContent'
 import { useTranslation } from '../i18n/useTranslation'
 import {
   ASSESSMENT_QUESTION_COUNT,

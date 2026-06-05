@@ -1,35 +1,21 @@
-import { Link } from 'react-router-dom'
-import { HiMail, HiClock, HiGlobeAlt } from 'react-icons/hi'
 import SEO from '../components/SEO'
 import PageHero from '../components/sections/PageHero'
 import ContactForm from '../components/sections/ContactForm'
+import ContactDetailList, { ContactCtaLink } from '../components/contact/ContactDetailList'
 import Animate from '../components/Animate'
-import { getPageSeo } from '../i18n/getPageSeo'
+import {
+  getContactAssessmentCta,
+  getContactDetails,
+  getPageImage,
+  getPageSeo,
+} from '../data/siteContent'
 import { useTranslation } from '../i18n/useTranslation'
-import { IMAGES } from '../utilities'
 
 export default function ContactPage() {
   const { t } = useTranslation()
   const seo = getPageSeo('contact', t)
-
-  const contactInfo = [
-    {
-      icon: HiMail,
-      label: t('contact.email'),
-      value: 'hello@convolingua.com',
-      href: 'mailto:hello@convolingua.com',
-    },
-    {
-      icon: HiClock,
-      label: t('contact.responseTime'),
-      value: t('contact.responseValue'),
-    },
-    {
-      icon: HiGlobeAlt,
-      label: t('contact.sessions'),
-      value: t('contact.sessionsValue'),
-    },
-  ]
+  const contactDetails = getContactDetails(t)
+  const assessmentCta = getContactAssessmentCta(t)
 
   return (
     <>
@@ -38,7 +24,7 @@ export default function ContactPage() {
         label={t('contact.heroLabel')}
         title={t('contact.heroTitle')}
         description={t('contact.heroDesc')}
-        image={IMAGES.Contact}
+        image={getPageImage('contact')}
       />
 
       <section className="section contact-section">
@@ -49,34 +35,11 @@ export default function ContactPage() {
                 <h2>{t('contact.getInTouch')}</h2>
                 <p className="contact-panel-lead">{t('contact.lead')}</p>
 
-                <ul className="contact-details">
-                  {contactInfo.map((item) => {
-                    const Icon = item.icon
-                    return (
-                      <li key={item.label}>
-                        <span className="contact-detail-icon" aria-hidden>
-                          <Icon size={20} />
-                        </span>
-                        <div>
-                          <span className="contact-detail-label">{item.label}</span>
-                          {item.href ? (
-                            <a href={item.href} className="contact-detail-value">
-                              {item.value}
-                            </a>
-                          ) : (
-                            <strong className="contact-detail-value">{item.value}</strong>
-                          )}
-                        </div>
-                      </li>
-                    )
-                  })}
-                </ul>
+                <ContactDetailList items={contactDetails} />
 
                 <div className="contact-panel-footer">
                   <p>{t('contact.preferTest')}</p>
-                  <Link to="/assessment" className="btn btn-ghost">
-                    {t('contact.assessmentLink')}
-                  </Link>
+                  <ContactCtaLink {...assessmentCta} />
                 </div>
               </div>
             </Animate>

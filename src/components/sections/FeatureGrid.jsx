@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Animate from '../Animate'
 import { useTranslation } from '../../i18n/useTranslation'
+import { getSectionCta } from '../../data/siteContent'
 
 export default function FeatureGrid({
   courses,
@@ -11,6 +12,7 @@ export default function FeatureGrid({
   id,
 }) {
   const { t } = useTranslation()
+  const viewAllCta = getSectionCta('coursesViewAll', t)
 
   const sectionLabel = label ?? t('courses.sectionLabel')
   const sectionTitle = title ?? t('courses.sectionTitle')
@@ -41,8 +43,8 @@ export default function FeatureGrid({
 
         {showViewAll && (
           <Animate className="section-cta-row">
-            <Link to="/courses" className="btn btn-primary">
-              {t('courses.viewAll')}
+            <Link to={viewAllCta.to} className={viewAllCta.className}>
+              {viewAllCta.label}
             </Link>
           </Animate>
         )}

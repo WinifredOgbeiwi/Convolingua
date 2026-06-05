@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
-import { SITE_URL } from '../config/site.js'
+import { SITE_URL, getDefaultSeo } from '../data/siteContent.js'
 import { useTranslation } from '../i18n/useTranslation'
-import { getDefaultSeo } from '../i18n/getPageSeo'
 
 function setMeta(name, content, attr = 'name') {
   if (!content) return
@@ -42,7 +41,7 @@ export default function SEO({ title, description, path = '/', keywords }) {
       document.head.appendChild(link)
     }
     link.setAttribute('href', canonical)
-  }, [fullTitle, desc, kw, canonical])
+  }, [fullTitle, desc, kw, canonical, defaults.siteName])
 
   return null
 }

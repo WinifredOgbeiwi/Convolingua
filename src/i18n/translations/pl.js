@@ -1,3 +1,5 @@
+import legal from './legal/pl.js'
+
 export default {
   lang: {
     pl: 'PL',
@@ -46,6 +48,16 @@ export default {
         description:
           'Bezpłatny test — 10 losowych pytań z bazy 100. Wynik i spersonalizowany plan na e-mail.',
       },
+      privacy: {
+        title: 'Polityka prywatności — ConvoLingua',
+        description:
+          'Jak ConvoLingua zbiera, wykorzystuje i chroni Twoje dane osobowe.',
+      },
+      terms: {
+        title: 'Regulamin — ConvoLingua',
+        description:
+          'Warunki korzystania ze strony i usług ConvoLingua.',
+      },
     },
   },
   hero: {
@@ -75,6 +87,33 @@ export default {
         meta: 'Spotkania, prezentacje, e-mail i komunikacja z klientem.',
       },
     ],
+  },
+  whyUs: {
+    label: 'Dlaczego my',
+    title: 'Wszystko, czego potrzebujesz, by odnieść sukces w angielskim',
+    desc: 'Profesjonalny coaching dopasowany do Twoich celów, harmonogramu i budżetu.',
+    items: {
+      instructors: {
+        title: 'Doświadczeni instruktorzy',
+        description:
+          'Ucz się z certyfikowanymi, doświadczonymi nauczycielami angielskiego, którzy zapewniają spersonalizowane wsparcie na każdym etapie.',
+      },
+      scheduling: {
+        title: 'Elastyczny harmonogram',
+        description:
+          'Wybieraj terminy dopasowane do rutyny i ucz się we własnym tempie dzięki materiałom do samodzielnej nauki.',
+      },
+      pricing: {
+        title: 'Przystępne ceny',
+        description:
+          'Doskonała edukacja bez przepłacania. Oferujemy konkurencyjne ceny i elastyczne opcje płatności.',
+      },
+      interactive: {
+        title: 'Interaktywne lekcje',
+        description:
+          'Ćwicz angielski w realnych scenariuszach — odgrywanie ról, dyskusje i angażujące aktywności.',
+      },
+    },
   },
   pillars: {
     title: 'Opanuj angielski z łatwością, szybko i elastycznie.',
@@ -289,11 +328,11 @@ export default {
       'Zapytaj o bezpłatny test, programy korporacyjne lub porozmawiaj z naszym zespołem.',
     getInTouch: 'Napisz do nas',
     lead: 'Opowiedz o celach — dopasujemy coacha i program. Zapytania firmowe i zespołowe mile widziane.',
+    address: 'Adres',
     email: 'E-mail',
+    phone: 'Telefon',
     responseTime: 'Czas odpowiedzi',
-    responseValue: 'Do 1 dnia roboczego',
-    sessions: 'Sesje',
-    sessionsValue: 'Pon–Sob, globalne strefy czasowe',
+    responseValue: 'W ciągu kilku minut',
     preferTest: 'Wolisz najpierw szybki test poziomu?',
     assessmentLink: 'Bezpłatny test poziomu',
     formTitle: 'Wyślij wiadomość',
@@ -310,7 +349,7 @@ export default {
     sending: 'Wysyłanie…',
     successTitle: 'Wiadomość wysłana',
     successText:
-      'Dziękujemy za kontakt. Odpowiemy w ciągu jednego dnia roboczego z kolejnymi krokami.',
+      'Dziękujemy za kontakt. Odpowiemy w ciągu kilku minut z kolejnymi krokami.',
     takeAssessment: 'Bezpłatny test poziomu',
     sendAnother: 'Wyślij kolejną wiadomość',
     interests: {
@@ -371,8 +410,10 @@ export default {
       contact: 'Kontakt',
     },
     rights: 'Wszelkie prawa zastrzeżone.',
-    legal: 'Prywatność · Regulamin',
+    privacyLink: 'Polityka prywatności',
+    termsLink: 'Regulamin',
   },
+  legal,
   coursesPage: {
     heroLabel: 'Kursy',
     heroTitle: 'Programy dopasowane do harmonogramu i ambicji',

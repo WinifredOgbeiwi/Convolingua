@@ -3,10 +3,12 @@ import PageHero from '../components/sections/PageHero'
 import FeatureGrid from '../components/sections/FeatureGrid'
 import Pricing from '../components/sections/Pricing'
 import CTABand from '../components/sections/CTABand'
-import { getPageSeo } from '../i18n/getPageSeo'
-import { getLocalizedCourses } from '../i18n/localizeCourses'
+import {
+  getLocalizedCourses,
+  getPageImage,
+  getPageSeo,
+} from '../data/siteContent'
 import { useTranslation } from '../i18n/useTranslation'
-import { IMAGES } from '../utilities'
 
 export default function CoursesPage() {
   const { t } = useTranslation()
@@ -20,7 +22,7 @@ export default function CoursesPage() {
         label={t('coursesPage.heroLabel')}
         title={t('coursesPage.heroTitle')}
         description={t('coursesPage.heroDesc')}
-        image={IMAGES.AllCourses}
+        image={getPageImage('courses')}
       />
       <FeatureGrid
         id="courses-list"

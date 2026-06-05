@@ -1,13 +1,11 @@
-import { IMAGES } from '../../utilities'
 import { FaStar } from 'react-icons/fa'
 import Animate from '../Animate'
 import { useTranslation } from '../../i18n/useTranslation'
-
-const AVATARS = [IMAGES.Zuzzana, IMAGES.Piotr, IMAGES.Teacher]
+import { getTestimonials } from '../../data/siteContent'
 
 export default function Testimonials() {
   const { t } = useTranslation()
-  const items = t('testimonials.items') || []
+  const items = getTestimonials(t)
 
   return (
     <section className="section testimonials-section">
@@ -28,7 +26,7 @@ export default function Testimonials() {
               </div>
               <p className="testimonial-quote">&ldquo;{item.quote}&rdquo;</p>
               <div className="testimonial-author">
-                <img src={AVATARS[i]} alt="" width={44} height={44} loading="lazy" />
+                <img src={item.avatar} alt="" width={44} height={44} loading="lazy" />
                 <div>
                   <strong>{item.name}</strong>
                   <span>{item.role}</span>

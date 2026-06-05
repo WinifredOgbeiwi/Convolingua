@@ -1,3 +1,5 @@
+import legal from './legal/en.js'
+
 export default {
   lang: {
     pl: 'PL',
@@ -44,7 +46,17 @@ export default {
       assessment: {
         title: 'Free English Level Assessment — ConvoLingua',
         description:
-          'Take our free English placement test — 10 random questions from a bank of 100. Get your score and personalized plan by email.',
+          'Take our free English placement test.',
+      },
+      privacy: {
+        title: 'Privacy Policy — ConvoLingua',
+        description:
+          'How ConvoLingua collects, uses, and protects your personal information.',
+      },
+      terms: {
+        title: 'Terms of Service — ConvoLingua',
+        description:
+          'Terms and conditions for using the ConvoLingua website and services.',
       },
     },
   },
@@ -57,7 +69,7 @@ export default {
     emailLabel: 'Work email',
     emailPlaceholder: 'Enter your work email',
     cta: 'Free assessment test',
-    note: 'Gauge your English level in minutes · Personalized plan by email',
+    note: 'Gauge your English level in minutes. ',
     cards: [
       {
         label: 'Learning format',
@@ -75,6 +87,33 @@ export default {
         meta: 'Meetings, presentations, email, and client communication.',
       },
     ],
+  },
+  whyUs: {
+    label: 'Why choose us',
+    title: 'Everything you need to succeed in English',
+    desc: 'Professional coaching designed around your goals, schedule, and budget.',
+    items: {
+      instructors: {
+        title: 'Expert instructors',
+        description:
+          'Learn from certified, experienced English teachers who provide personalized guidance and support throughout your journey.',
+      },
+      scheduling: {
+        title: 'Flexible scheduling',
+        description:
+          'Choose class times that fit your routine and learn at your own pace with self-paced lessons.',
+      },
+      pricing: {
+        title: 'Affordable pricing',
+        description:
+          'Get excellent education without breaking the bank. We offer competitive pricing and payment options.',
+      },
+      interactive: {
+        title: 'Interactive lessons',
+        description:
+          'Practice English in real-world scenarios through role-playing, discussions, and interactive activities.',
+      },
+    },
   },
   pillars: {
     title: 'Master English with ease, speed, and flexibility.',
@@ -196,7 +235,7 @@ export default {
     badge: 'Free test',
     label: 'Get started today',
     title: 'Discover your English level in minutes',
-    desc: 'Take our free assessment to gauge your professional English skills. Receive an instant result plus a detailed report and personalized plan by email.',
+    desc: 'Take our free assessment to gauge your professional English skills. Receive an instant result plus a detailed report.',
     assessment: 'Free assessment test',
     courses: 'Browse courses',
     perks: [
@@ -289,11 +328,11 @@ export default {
       'Request a free assessment, ask about corporate programs, or speak with our team.',
     getInTouch: 'Get in touch',
     lead: 'Tell us about your goals and we will match you with the right coach and program. Corporate and team inquiries are welcome.',
+    address: 'Address',
     email: 'Email',
+    phone: 'Phone',
     responseTime: 'Response time',
-    responseValue: 'Within 1 business day',
-    sessions: 'Sessions',
-    sessionsValue: 'Mon–Sat, global time zones',
+    responseValue: 'Within minutes',
     preferTest: 'Prefer a quick level check first?',
     assessmentLink: 'Take the free assessment test',
     formTitle: 'Send a message',
@@ -310,7 +349,7 @@ export default {
     sending: 'Sending…',
     successTitle: 'Message sent',
     successText:
-      'Thank you for reaching out. We will reply within one business day with next steps for your program or assessment.',
+      'Thank you for reaching out. We will reply within minutes with next steps for your program or assessment.',
     takeAssessment: 'Take free assessment',
     sendAnother: 'Send another message',
     interests: {
@@ -371,8 +410,10 @@ export default {
       contact: 'Contact',
     },
     rights: 'All rights reserved.',
-    legal: 'Privacy · Terms',
+    privacyLink: 'Privacy Policy',
+    termsLink: 'Terms of Service',
   },
+  legal,
   coursesPage: {
     heroLabel: 'Courses',
     heroTitle: 'Programs that fit your schedule and ambitions',

@@ -4,16 +4,13 @@ import Logo from '../Logo'
 import LanguageSwitcher from './LanguageSwitcher'
 import { HiMenu, HiX } from 'react-icons/hi'
 import { useTranslation } from '../../i18n/useTranslation'
-
-const NAV_LINKS = [
-  { to: '/', key: 'home', end: true },
-  { to: '/about', key: 'about' },
-  { to: '/courses', key: 'courses' },
-]
+import { getHeaderCta, getNavLinks } from '../../data/siteContent'
 
 export default function Header() {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const navLinks = getNavLinks(t)
+  const headerCta = getHeaderCta(t)
 
   return (
     <>
@@ -22,22 +19,22 @@ export default function Header() {
           <Logo />
 
           <nav className="nav" aria-label="Main">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 end={link.end}
                 className={({ isActive }) => (isActive ? 'active' : undefined)}
               >
-                {t(`nav.${link.key}`)}
+                {link.label}
               </NavLink>
             ))}
           </nav>
 
           <div className="header-actions">
             <LanguageSwitcher />
-            <NavLink to="/contact" className="btn btn-primary header-cta">
-              {t('nav.contact')}
+            <NavLink to={headerCta.to} className={headerCta.className}>
+              {headerCta.label}
             </NavLink>
             <button
               type="button"
@@ -53,7 +50,7 @@ export default function Header() {
       </header>
 
       <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`} aria-label="Mobile">
-        {NAV_LINKS.map((link) => (
+        {navLinks.map((link) => (
           <NavLink
             key={link.to}
             to={link.to}
@@ -61,16 +58,16 @@ export default function Header() {
             onClick={() => setMenuOpen(false)}
             className={({ isActive }) => (isActive ? 'active' : undefined)}
           >
-            {t(`nav.${link.key}`)}
+            {link.label}
           </NavLink>
         ))}
         <LanguageSwitcher className="lang-switcher--mobile" />
         <NavLink
-          to="/contact"
-          className="btn btn-primary header-cta text-white"
+          to={headerCta.to}
+          className={`${headerCta.className} text-white`}
           onClick={() => setMenuOpen(false)}
         >
-          {t('nav.contact')}
+          {headerCta.label}
         </NavLink>
       </nav>
     </>

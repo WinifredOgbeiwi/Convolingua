@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
-import { IMAGES } from '../../utilities'
+import { IMAGES, getSectionCta } from '../../data/siteContent'
 import Animate from '../Animate'
 import { useTranslation } from '../../i18n/useTranslation'
 
 export default function CTABand() {
   const { t } = useTranslation()
   const perks = t('cta.perks') || []
+  const actions = getSectionCta('ctaBand', t)
 
   return (
     <section className="cta-section section">
@@ -22,12 +23,11 @@ export default function CTABand() {
               <h2>{t('cta.title')}</h2>
               <p>{t('cta.desc')}</p>
               <div className="cta-card-actions">
-                <Link to="/assessment" className="btn btn-primary btn-lg">
-                  {t('cta.assessment')}
-                </Link>
-                <Link to="/courses" className="btn btn-outline btn-lg">
-                  {t('cta.courses')}
-                </Link>
+                {actions.map((action) => (
+                  <Link key={action.to} to={action.to} className={action.className}>
+                    {action.label}
+                  </Link>
+                ))}
               </div>
               <ul className="cta-card-perks">
                 {perks.map((item) => (
