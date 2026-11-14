@@ -48,22 +48,22 @@
 }
 
 .book-now--kp {
-  color: var(--kp-text, #4a3306);
+  color: #e8d5a0;
   background:
-    radial-gradient(ellipse 55% 45% at 100% 0%, rgba(255, 255, 255, 0.35), transparent 50%),
-    linear-gradient(155deg, #ffe27a 0%, #ffd34e 45%, #f5c020 100%);
-  border-color: var(--kp-border, rgba(91, 52, 214, 0.22));
-  box-shadow: 0 12px 28px rgba(91, 52, 214, 0.16);
+    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(255, 211, 78, 0.2), transparent 55%),
+    linear-gradient(160deg, #2a1c08 0%, #241808 60%, #1a1206 100%);
+  border-color: rgba(255, 211, 78, 0.28);
+  box-shadow: 0 16px 40px rgba(42, 28, 8, 0.28);
 }
 
 .book-now--kp .book-now-title,
 .book-now--kp .book-now-success h3 {
-  color: var(--kp-heading, #2d1b69);
+  color: #fff6de;
   font-family: var(--kp-font-display, var(--font));
 }
 
 .book-now--kp .book-now-label {
-  color: var(--kp-accent, #5b34d6);
+  color: #ffd34e;
   opacity: 1;
 }
 
@@ -135,8 +135,8 @@
 .book-now--kp .book-now-field input,
 .book-now--kp .book-now-field select,
 .book-now--kp .book-now-field textarea {
-  border-color: rgba(91, 52, 214, 0.2);
-  background: #fff;
+  border-color: rgba(255, 211, 78, 0.28);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .book-now-field input:focus,
@@ -157,8 +157,8 @@
 .book-now--kp .book-now-field input:focus,
 .book-now--kp .book-now-field select:focus,
 .book-now--kp .book-now-field textarea:focus {
-  border-color: rgba(91, 52, 214, 0.55);
-  box-shadow: 0 0 0 3px rgba(91, 52, 214, 0.16);
+  border-color: rgba(255, 211, 78, 0.7);
+  box-shadow: 0 0 0 3px rgba(255, 211, 78, 0.2);
 }
 
 .book-now-field textarea {
@@ -173,7 +173,7 @@
 }
 
 .book-now--kp .book-now-error {
-  color: #9f1239;
+  color: #fecaca;
 }
 
 .book-now-btn {
@@ -206,8 +206,8 @@
 
 .book-now-btn--pp.book-now-btn-primary {
   color: #0c1233;
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  background: var(--pp-accent, #aab0ff);
+  box-shadow: 0 8px 22px rgba(170, 176, 255, 0.28);
 }
 
 .book-now-btn--rp.book-now-btn-primary {
@@ -217,9 +217,9 @@
 }
 
 .book-now-btn--kp.book-now-btn-primary {
-  color: #fff;
-  background: var(--kp-accent, #5b34d6);
-  box-shadow: 0 4px 0 #3b1fa3;
+  color: #2a1c08;
+  background: #ffd34e;
+  box-shadow: 0 4px 0 #c49a18;
 }
 
 .book-now-success {
@@ -233,7 +233,7 @@
 }
 
 .book-now--kp .book-now-success-icon {
-  color: #15803d;
+  color: #86efac;
 }
 
 .book-now-success h3 {

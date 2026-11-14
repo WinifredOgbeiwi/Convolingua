@@ -22,7 +22,11 @@ export default function ContactSection() {
         </div>
 
         <div className="contact-layout">
-          <Animate className="contact-panel contact-panel-info">
+          <Animate className="contact-panel contact-panel-form">
+            <ContactForm key={program} defaultInterest={program} />
+          </Animate>
+
+          <Animate className="contact-panel contact-panel-info" delay={100}>
             <div className="contact-panel-body">
               <h3 className="contact-info-title">{t('contact.getInTouch')}</h3>
               <ContactDetailList items={contactDetails} />
@@ -34,10 +38,6 @@ export default function ContactSection() {
                 </a>
               </div>
             </div>
-          </Animate>
-
-          <Animate className="contact-panel contact-panel-form" delay={100}>
-            <ContactForm key={program} defaultInterest={program} />
           </Animate>
         </div>
       </div>
