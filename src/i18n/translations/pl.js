@@ -8,25 +8,460 @@ export default {
   },
   nav: {
     home: 'Strona główna',
+    adults: 'Profesjonaliści',
+    robotics: 'AI i robotyka',
+    kids: 'Dzieci',
     about: 'O nas',
     courses: 'Kursy',
     contact: 'Kontakt',
+    cta: 'Zaloguj się',
     menuOpen: 'Otwórz menu',
     menuClose: 'Zamknij menu',
   },
+  login: {
+    title: 'Witaj ponownie',
+    lead: 'Zaloguj się na konto ucznia, żeby kontynuować naukę.',
+    email: 'E-mail',
+    emailPlaceholder: 'ty@example.com',
+    password: 'Hasło',
+    passwordPlaceholder: 'Wpisz hasło',
+    submit: 'Zaloguj się',
+    forgot: 'Nie pamiętasz hasła?',
+    errorRequired: 'Podaj e-mail i hasło.',
+    errorInvalid: 'E-mail lub hasło wygląda na niepoprawne. Spróbuj ponownie.',
+  },
+  forgotPassword: {
+    title: 'Zresetuj hasło',
+    lead: 'Podaj e-mail powiązany z kontem ucznia — wyślemy instrukcję resetu.',
+    email: 'E-mail',
+    emailPlaceholder: 'ty@example.com',
+    submit: 'Wyślij link resetujący',
+    backToLogin: 'Wróć do logowania',
+    errorRequired: 'Podaj adres e-mail.',
+    success: 'Jeśli ten e-mail jest zarejestrowany, instrukcja resetu już do Ciebie idzie.',
+  },
+  home: {
+    eyebrow: 'ConvoLingua English Academy',
+    title: 'Jedna akademia, trzy ścieżki rozwoju',
+    subtitle: 'Wybierz ścieżkę dopasowaną do Ciebie lub Twojej rodziny.',
+    programsLabel: 'Nasze programy',
+    programs: {
+      adults: {
+        tag: 'Dla dorosłych',
+        title: 'Angielski dla profesjonalistów',
+        description:
+          'Mów pewnie na spotkaniach, prezentacjach i negocjacjach. Lekcje na żywo dopasowane do Twojej kariery.',
+        points: [
+          'Lekcje na żywo',
+          'Słownictwo biznesowe i branżowe',
+          'Elastyczny harmonogram',
+        ],
+        cta: 'Poznaj ofertę',
+        imageAlt: 'Współpracownicy uczący się angielskiego przy laptopie',
+      },
+      robotics: {
+        tag: 'Przyszli twórcy',
+        title: 'Programowanie AI i robotyki',
+        description:
+          'Naucz się kodować, budować roboty i wykorzystywać AI w praktycznych projektach, w których kreatywność spotyka prawdziwą technologię.',
+        points: [
+          'Praktyczne projekty z robotami',
+          'Podstawy programowania',
+          'AI w prostym wydaniu',
+        ],
+        cta: 'Poznaj ofertę',
+        imageAlt: 'Ilustracja przyjaznego robota programisty',
+      },
+      kids: {
+        tag: 'Dla dzieci',
+        title: 'Angielski dla dzieci',
+        description:
+          'Zabawne lekcje z piosenkami, historiami i grami, które budują prawdziwą pewność siebie, krok po kroku.',
+        points: [
+          'Gry, piosenki i historie',
+          'Przyjaźni, wspierający nauczyciele',
+          'Postępy widoczne dla rodziców',
+        ],
+        cta: 'Poznaj ofertę',
+        imageAlt: 'Dzieci uczące się razem przy laptopach',
+      },
+    },
+    about: {
+      label: 'O nas',
+      title: 'Nauka, która zaczyna się od prawdziwej rozmowy',
+      p1: 'ConvoLingua to warszawska akademia oparta na prostym przekonaniu: najlepiej uczymy się, działając. Mówienie, budowanie i zabawa zawsze wygrywają z wkuwaniem.',
+      p2: 'Niezależnie od tego, czy rozwijasz karierę, wychowujesz ciekawe świata dziecko, czy odkrywasz technologię, każdą lekcję dopasowujemy do ucznia, z jasnymi celami i przyjazną opieką.',
+      imageAlt: 'Nauczycielka prowadząca lekcję online na żywo',
+      values: [
+        {
+          title: 'Uczeń na pierwszym miejscu',
+          text: 'Każdy plan zaczyna się od Twoich celów, poziomu i tempa.',
+        },
+        {
+          title: 'Praktyka zamiast teorii',
+          text: 'Rozmowy, projekty i gry sprawiają, że każda lekcja jest aktywna.',
+        },
+        {
+          title: 'Elastycznie z założenia',
+          text: 'Lekcje na żywo, które pasują do pracy, szkoły i życia rodzinnego.',
+        },
+      ],
+    },
+    contact: {
+      label: 'Kontakt',
+      title: 'Porozmawiajmy',
+      desc: 'Napisz, dla kogo są lekcje i co chcesz osiągnąć. Odpowiemy, wskazując najlepszy kolejny krok.',
+      callPrompt: 'Wolisz porozmawiać?',
+      callCta: 'Zadzwoń',
+    },
+  },
+  booking: {
+    cta: 'Zarezerwuj',
+    label: 'Rezerwacja sesji',
+    title: 'Zarezerwuj teraz',
+    lead: 'Podaj dane i preferowany termin. Wkrótce potwierdzimy Twoją sesję.',
+    firstName: 'Imię',
+    lastName: 'Nazwisko',
+    email: 'E-mail',
+    phone: 'Telefon (opcjonalnie)',
+    package: 'Interesujący pakiet',
+    selectPackage: 'Wybierz pakiet',
+    date: 'Preferowana data',
+    time: 'Preferowana godzina',
+    notes: 'Uwagi (opcjonalnie)',
+    notesPlaceholder: 'Coś, co powinniśmy wiedzieć przed sesją…',
+    submit: 'Zarezerwuj',
+    sending: 'Wysyłanie…',
+    successTitle: 'Prośba o rezerwację wysłana',
+    successText: 'Dziękujemy. Wkrótce potwierdzimy preferowaną datę i godzinę e-mailem.',
+    bookAnother: 'Zarezerwuj kolejną sesję',
+    programs: {
+      professionals: 'Angielski dla profesjonalistów',
+      robotics: 'Programowanie AI i robotyki',
+      kids: 'Angielski dla dzieci',
+    },
+  },
+  professionals: {
+    tag: 'Dla dorosłych',
+    title: 'Angielski dla profesjonalistów',
+    lead: 'Mów pewnie na spotkaniach, prezentacjach i negocjacjach. Lekcje na żywo dopasowane do Twojej kariery, branży i harmonogramu.',
+    ctaPricing: 'Zobacz cennik',
+    ctaContact: 'Zarezerwuj',
+    imageAlt: 'Współpracownicy uczący się angielskiego przy laptopie',
+    badge: 'Lekcje na żywo',
+    facts: [
+      { title: 'Na żywo', text: 'Zajęcia z doświadczonymi coachami — indywidualne lub w grupie.' },
+      { title: 'Elastycznie', text: 'Terminy dopasowane do pracy, także wieczory i weekendy.' },
+      { title: 'Na miarę', text: 'Słownictwo z Twojej branży.' },
+      { title: 'Mierzalnie', text: 'Testy poziomu zgodne z CEFR i raporty postępów.' },
+    ],
+    steps: {
+      label: 'Jak to działa',
+      title: 'Od pierwszej lekcji do swobody w trzech krokach',
+      items: [
+        { title: 'Test poziomu i cele', text: 'Sprawdzamy, na jakim jesteś etapie, do czego potrzebujesz angielskiego i ile masz czasu.' },
+        { title: 'Twój osobisty plan', text: 'Otrzymujesz plan oparty na Twojej branży, celach i kalendarzu.' },
+        { title: 'Lekcje na żywo i postępy', text: 'Ćwiczysz z coachem co tydzień i śledzisz postępy w regularnych raportach.' },
+      ],
+    },
+    pricing: {
+      note: 'Programy dla dorosłych oferujemy jako pakiety (np. 6-sesyjny program prezentacyjny), a nie jako prostą stawkę godzinową. Ceny orientacyjne — napisz o celach, a potwierdzimy najlepszy wybór.',
+    },
+    cta: {
+      title: 'Gotowy mówić z pewnością siebie?',
+      text: 'Opowiedz o swoich celach, a dopasujemy odpowiedniego coacha.',
+      button: 'Zarezerwuj',
+    },
+  },
+  robotics: {
+    tag: 'Wiek 9–15 lat',
+    title: 'Programowanie AI i robotyki',
+    lead: 'Nie tylko korzystaj z technologii — naucz się ją tworzyć. Scratch, roboty i przyjazne AI w praktycznych projektach, które się ruszają i świecą.',
+    ctaPricing: 'Zobacz cennik',
+    ctaContact: 'Zarezerwuj',
+    badge: 'Scratch · Roboty · AI',
+    ages: 'Dla dzieci i nastolatków — początkujący mile widziani',
+    facts: [
+      { title: 'Myśl', text: 'Myślenie komputacyjne: dziel problemy na jasne, logiczne kroki.' },
+      { title: 'Koduj', text: 'Najpierw bloki, potem głębsze podstawy wraz z rozwojem umiejętności.' },
+      { title: 'Buduj', text: 'Roboty, sensory i projekty cyfrowe, które widać i da się ulepszać.' },
+      { title: 'Twórz', text: 'Gry, animacje i pokazy, którymi pochwalisz się w domu i w szkole.' },
+    ],
+    gallery: {
+      label: 'W labie',
+      title: 'Tu pomysły stają się maszynami',
+      desc: 'Scratch na ekranie. Układy na stole. Roboty, które jeżdżą, czują i reagują.',
+      items: [
+        {
+          caption: 'Scratch i kod',
+          alt: 'Dzieci programujące na laptopie obok projektu robotycznego',
+        },
+        {
+          caption: 'Budowa robotów',
+          alt: 'Dzieci składające edukacyjne zestawy robotów w klasie STEM',
+        },
+        {
+          caption: 'Układy i sensory',
+          alt: 'Dzieci podłączające silniki i sensory do podwozia robota',
+        },
+      ],
+    },
+    focus: {
+      label: 'Czego nauczą się uczniowie',
+      title: 'Umiejętności, które zostają, bo je budują',
+      desc: 'Uczymy przez działanie — najpierw kod wizualny i bloki, potem bogatsze projekty. Bez wcześniejszego doświadczenia.',
+      items: [
+        {
+          title: 'Myślenie komputacyjne',
+          text: 'Dziel złożone problemy na mniejsze kroki i buduj logiczne rozwiązania.',
+        },
+        {
+          title: 'Podstawy programowania',
+          text: 'Sekwencje, pętle, zmienne, warunki i debugowanie — krok po kroku.',
+        },
+        {
+          title: 'Scratch i projekty cyfrowe',
+          text: 'Gry, historie i animacje, które uczą prawdziwej logiki przez zabawę.',
+        },
+        {
+          title: 'Budowa robotów',
+          text: 'Składanie zestawów, podłączanie silników i sensorów, potem ożywianie bota.',
+        },
+        {
+          title: 'Rozwiązywanie problemów',
+          text: 'Eksperymentuj, znajduj błędy i ulepszaj rozwiązania z pewnością siebie.',
+        },
+        {
+          title: 'Samodzielne myślenie',
+          text: 'Planuj projekty, testuj pomysły i domykaj pokazy bez gotowego scenariusza.',
+        },
+      ],
+    },
+    steps: {
+      label: 'Jak to działa',
+      title: 'Od pierwszej lekcji do własnego projektu',
+      items: [
+        {
+          title: 'Poznanie i dopasowanie',
+          text: 'Sprawdzamy wiek, poziom i zainteresowania, potem proponujemy grupę — także dla początkujących.',
+        },
+        {
+          title: 'Budowanie tydzień po tygodniu',
+          text: 'Praktyczne projekty od bloków Scratch po bogatsze kodowanie i robotykę.',
+        },
+        {
+          title: 'Pokaz i kolejne kroki',
+          text: 'Pokaz tego, co powstało, feedback i wybór kolejnego projektu.',
+        },
+      ],
+    },
+    pricing: {
+      label: 'Cennik',
+      title: 'Plany dla ciekawych twórców',
+      desc: 'Premium to najpełniejsza ścieżka. Standard to nasza rekomendowana równowaga. Essential zostawia start prosty.',
+      popular: 'Rekomendowany',
+      perMonth: '/ miesiąc',
+      custom: 'Indywidualnie',
+      note: 'Orientacyjne pakiety dla wieku 9–15 — napisz o wieku i celach, a potwierdzimy najlepszy wybór.',
+      plans: {
+        premium: {
+          name: 'Premium',
+          description: 'Kodowanie + komunikacja po angielsku + rozwiązywanie problemów — pełniejszy rozwój.',
+          features: [
+            'Kodowanie, robotyka i rozwiązywanie problemów',
+            'Angielski do prezentowania projektów',
+            'Bogatsze wyzwania projektowe',
+            'Indywidualne notatki o postępach',
+            'Priorytetowe miejsca w grupach',
+          ],
+          cta: 'Zarezerwuj',
+        },
+        standard: {
+          name: 'Standard',
+          description: 'Nasza podstawowa ścieżka — kodowanie i programowanie z praktyczną robotyką.',
+          features: [
+            'Scratch i podstawy programowania',
+            'Budowy robotów i sensory',
+            'Kreatywne projekty cyfrowe',
+            'Mierzalne efekty nauki',
+            'Miesięczna notatka dla rodziców',
+          ],
+          cta: 'Zarezerwuj',
+        },
+        essential: {
+          name: 'Essential',
+          description: 'Solidny start w kodowaniu z zabawną praktyką i jasnymi celami.',
+          features: [
+            'Zajęcia Scratch dla początkujących',
+            'Prowadzone projekty startowe',
+            'Gry rozwijające myślenie logiczne',
+            'Proste pomysły do ćwiczeń w domu',
+          ],
+          cta: 'Zarezerwuj',
+        },
+      },
+    },
+    cta: {
+      title: 'Myśl logicznie. Twórz cyfrowo. Buduj przyszłość.',
+      text: 'Napisz o wieku ucznia i o tym, co chce stworzyć. Wskażemy najlepszy kolejny krok.',
+      button: 'Zarezerwuj',
+    },
+  },
+  kids: {
+    tag: 'Wiek 6–8 lat',
+    title: 'Literacja, logika i angielski',
+    lead: 'Mocne podstawy dla pewnych siebie myślicieli — czytanie, pisanie, mówienie i zabawne rozumowanie, które zostaje na lata.',
+    ctaPricing: 'Zobacz cennik',
+    ctaContact: 'Zarezerwuj',
+    imageAlt: 'Dzieci uczące się razem w jasnej klasie',
+    badge: 'Nauka przez zabawę',
+    ages: 'Dla ciekawskich 6–8-latków',
+    mascotAlt: 'Przyjazna dziewczynka-kreskówka machająca na powitanie',
+    facts: [
+      { title: 'Czytaj', text: 'Płynność, słownictwo i historie, które dzieci naprawdę chcą dokończyć.' },
+      { title: 'Pisz', text: 'Jasne zdania, ortografia i kreatywne pisanie w formie zabawy.' },
+      { title: 'Myśl', text: 'Łamigłówki, wzorce i logika, które budują niezależne myślenie.' },
+      { title: 'Mów', text: 'Pewność, by dzielić się pomysłami na głos — także nieśmiałe dzieci.' },
+    ],
+    gallery: {
+      label: 'W klasie',
+      title: 'Tu nauka pachnie zabawą',
+      desc: 'Historie na dywanie. Gry na podłodze. Pomysły, które stają się prawdziwymi umiejętnościami.',
+      items: [
+        { caption: 'Czas na bajkę', alt: 'Nauczycielka czytająca książkę małym dzieciom w klasie' },
+        { caption: 'Baw się i ucz', alt: 'Dziecko bawiące się drewnianymi torami i edukacyjnymi zabawkami' },
+        { caption: 'Wyobraźnia razem', alt: 'Dzieci bawiące się kreatywnie w jasnej sali zabaw' },
+      ],
+    },
+    focus: {
+      label: 'Czego dzieci ćwiczą',
+      title: 'Literacja + logika na każdej lekcji',
+      desc: 'Łączymy angielską literację z ćwiczeniami rozumowania, żeby dzieci rozumiały to, czego się uczą — i umiały to stosować samodzielnie.',
+      items: [
+        {
+          title: 'Czytanie',
+          text: 'Płynność, rozumienie, słownictwo i wnioski z historii oraz tekstów.',
+        },
+        {
+          title: 'Pisanie',
+          text: 'Zdania, ortografia, interpunkcja i kreatywne pisanie jak przygoda.',
+        },
+        {
+          title: 'Mówienie i słuchanie',
+          text: 'Wyrażanie pomysłów, udział w rozmowie i pewne odpowiedzi.',
+        },
+        {
+          title: 'Łamigłówki logiczne',
+          text: 'Wzorce, sekwencje, klasyfikacja i wyzwania problemowe.',
+        },
+        {
+          title: 'Myślenie krytyczne',
+          text: 'Porównywanie idei, wnioskowanie i wyjaśnianie, skąd wzięła się odpowiedź.',
+        },
+        {
+          title: 'Ciekawy umysł',
+          text: 'Gry, storytelling i odkrywanie, które nagradzają pytania tak samo jak odpowiedzi.',
+        },
+      ],
+    },
+    steps: {
+      label: 'Jak to działa',
+      title: 'Prosta ścieżka dla dzieci i rodziców',
+      items: [
+        {
+          title: 'Przyjazna rozmowa wstępna',
+          text: 'Poznajemy wiek, mocne strony i cele dziecka, potem proponujemy najlepszą grupę.',
+        },
+        {
+          title: 'Cotygodniowe przygody',
+          text: 'Lekcje na żywo z historiami, grami, łamigłówkami i małymi sukcesami.',
+        },
+        {
+          title: 'Postępy, które widać',
+          text: 'Jasne informacje dla rodziców i dumne momenty, którymi dziecko pochwali się w domu.',
+        },
+      ],
+    },
+    pricing: {
+      label: 'Cennik',
+      title: 'Dzieci 6–8 lat: wybierz ścieżkę',
+      desc: 'Premium jako najpełniejszy program. Standard to rekomendowana równowaga ceny i wartości. Essential to jasny, przystępny start.',
+      popular: 'Rekomendowany',
+      perMonth: '/ miesiąc',
+      custom: 'Indywidualnie',
+      note: 'Orientacyjne ceny programów dla dzieci w Mokotowie — napisz do nas, żeby potwierdzić dostępność i najlepszy wybór.',
+      plans: {
+        premium: {
+          name: 'Premium',
+          description: 'Angielski + literacja + logika i rozumowanie — nasz najpełniejszy program dla dzieci.',
+          features: [
+            'Angielski, literacja i myślenie krytyczne',
+            'Ćwiczenia logiki i rozumowania',
+            'Indywidualne raporty postępów',
+            'Dodatkowe korzyści edukacyjne i feedback',
+            'Bardziej kompleksowa ścieżka nauki',
+          ],
+          cta: 'Zarezerwuj',
+        },
+        standard: {
+          name: 'Standard',
+          description: 'Angielski + literacja — nasz podstawowy program ze strukturalną komunikacją.',
+          features: [
+            'Rozwój angielskiego i literacji',
+            'Strukturalne ćwiczenia komunikacji',
+            'Ustrukturyzowane lekcje z jasnymi efektami',
+            'Mierzalne postępy w nauce',
+            'Najlepsza równowaga ceny i wartości',
+          ],
+          cta: 'Zarezerwuj',
+        },
+        essential: {
+          name: 'Essential',
+          description: 'Konwersacje po angielsku — wartościowy, bardziej przystępny start.',
+          features: [
+            'Zajęcia konwersacyjne z angielskiego',
+            'Ćwiczenia mówienia budujące pewność',
+            'Angażujące aktywności na lekcji',
+            'Mniej dodatkowych usług niż w Standard',
+          ],
+          cta: 'Zarezerwuj',
+        },
+      },
+    },
+    cta: {
+      title: 'Gotowi na ciekawskich, pewnych siebie uczniów?',
+      text: 'Opowiedz o swoim dziecku. Pomożemy wybrać właściwą ścieżkę literacji i logiki.',
+      button: 'Zarezerwuj',
+    },
+  },
   seo: {
     default: {
-      title: 'ConvoLingua — Profesjonalny angielski dla liderów',
+      title: 'ConvoLingua — Angielski dla profesjonalistów, AI i robotyka, angielski dla dzieci',
       description:
-        'Premium coaching angielskiego dla profesjonalistów. Sesje 1-on-1 na żywo, program dopasowany do branży i mierzalne efekty.',
+        'ConvoLingua English Academy: lekcje angielskiego na żywo dla profesjonalistów i dzieci oraz praktyczne programowanie AI i robotyki.',
       keywords:
-        'angielski biznesowy, angielski zawodowy, kurs angielskiego, szkolenia korporacyjne, angielski dla managerów, lekcje online',
+        'angielski dla profesjonalistów, angielski biznesowy, angielski dla dzieci, programowanie AI, robotyka dla dzieci, lekcje online, Warszawa',
     },
     pages: {
       home: {
-        title: 'ConvoLingua — Opanuj angielski zawodowy z pewnością',
+        title: 'ConvoLingua — Jedna akademia, trzy ścieżki rozwoju',
         description:
-          'Coaching na żywo dla ambitnych profesjonalistów. Skuteczne, efektywne i angażujące metody nauki angielskiego biznesowego.',
+          'Angielski dla profesjonalistów, programowanie AI i robotyki oraz lekcje angielskiego dla dzieci. Wybierz swoją ścieżkę w ConvoLingua English Academy.',
+      },
+      professionals: {
+        title: 'Angielski dla profesjonalistów — ConvoLingua',
+        description:
+          'Coaching angielskiego na żywo: spotkania, prezentacje i negocjacje. Elastyczne plany dopasowane do Twojej kariery.',
+      },
+      robotics: {
+        title: 'Programowanie AI i robotyki — ConvoLingua',
+        description:
+          'Wiek 9–15: Scratch, robotyka i myślenie komputacyjne. Uczysz się, tworząc — początkujący mile widziani w ConvoLingua.',
+      },
+      kids: {
+        title: 'Literacja, logika i angielski dla dzieci — ConvoLingua',
+        description:
+          'Program dla dzieci 6–8 lat: czytanie, pisanie, mówienie i zabawne rozumowanie. Nauka przez zabawę w ConvoLingua.',
       },
       about: {
         title: 'O nas i metoda — ConvoLingua',
@@ -42,6 +477,14 @@ export default {
         title: 'Kontakt — ConvoLingua',
         description:
           'Napisz w sprawie kursów, szkoleń firmowych lub coachingu. Elastyczne terminy w różnych strefach czasowych.',
+      },
+      login: {
+        title: 'Logowanie — ConvoLingua',
+        description: 'Zaloguj się na konto ucznia ConvoLingua, żeby kontynuować naukę.',
+      },
+      forgotPassword: {
+        title: 'Reset hasła — ConvoLingua',
+        description: 'Zresetuj hasło do konta ucznia ConvoLingua.',
       },
       assessment: {
         title: 'Bezpłatny test poziomu angielskiego — ConvoLingua',
@@ -65,7 +508,7 @@ export default {
     title: 'Opanuj angielski zawodowy na',
     titleHighlight: 'arenie międzynarodowej',
     subtitle:
-      'Coaching 1-on-1 na żywo, program dopasowany do branży i praktyka w realnych sytuacjach — dla liderów, którzy potrzebują pewności na spotkaniach, w negocjacjach i w zespołach międzynarodowych.',
+      'Coaching na żywo, program dopasowany do branży i praktyka w realnych sytuacjach — dla liderów, którzy potrzebują pewności na spotkaniach, w negocjacjach i w zespołach międzynarodowych.',
     emailLabel: 'E-mail służbowy',
     emailPlaceholder: 'Wpisz swój e-mail służbowy',
     cta: 'Bezpłatny test poziomu',
@@ -73,7 +516,7 @@ export default {
     cards: [
       {
         label: 'Forma nauki',
-        value: 'Na żywo 1-on-1',
+        value: 'Lekcje na żywo',
         meta: 'Rozmawiaj z dedykowanym coachem i otrzymuj feedback dopasowany do celów.',
       },
       {
@@ -139,7 +582,7 @@ export default {
     p2: 'Niezależnie od tego, czy zespół potrzebuje płynności na spotkaniach, pewności w kontakcie z klientem czy standardów komunikacji pisemnej — projektujemy wdrożenie dopasowane do harmonogramu, budżetu i wymogów compliance.',
     benefits: [
       'Ścieżki nauki dopasowane do celów firmy i KPI',
-      'Format grupowy i 1-on-1 w różnych strefach czasowych',
+      'Format grupowy i indywidualny w różnych strefach czasowych',
       'Słownictwo branżowe: finanse, tech, prawo i inne',
       'Panele postępów dla HR i liderów zespołów',
       'Onboarding i dedykowany opiekun konta',
@@ -201,7 +644,7 @@ export default {
       'executive-coaching': {
         title: 'Coaching executive',
         description:
-          'Sesje 1-on-1 dla C-level i senior leadership — dyskrecja, elastyczność i szybkie efekty.',
+          'Zajęcia indywidualne dla C-level i senior leadership — dyskrecja, elastyczność i szybkie efekty.',
       },
     },
   },
@@ -247,47 +690,47 @@ export default {
   },
   pricing: {
     label: 'Cennik',
-    title: 'Zainwestuj w komunikację, która posuwa karierę',
-    desc: 'Przejrzyste plany bez ukrytych opłat. Zmiana planu, pauza lub zmiana coacha w dowolnym momencie.',
-    popular: 'Najpopularniejszy',
+    title: 'Dorośli i firmy: wybierz ścieżkę',
+    desc: 'Premium jako najpełniejszy coaching. Standard to rekomendowana równowaga ceny i wartości. Essential pasuje do zespołów zaczynających od szkoleń grupowych.',
+    popular: 'Rekomendowany',
     perMonth: '/ miesiąc',
     custom: 'Indywidualnie',
-    assessmentCta: 'Bezpłatny test poziomu',
+    assessmentCta: 'Umów konsultację',
     plans: {
+      premium: {
+        name: 'Premium',
+        description: 'Indywidualny coaching prezentacji dopasowany do branży — nasz najpełniejszy program dla dorosłych.',
+        features: [
+          'Indywidualny coaching prezentacji i wystąpnień publicznych',
+          'Komunikacja branżowa dopasowana do Twojego zawodu',
+          'Struktura wystąpień, klarowność i zaangażowanie odbiorców',
+          'Radzenie sobie z tremą i sesjami pytań',
+          'Rozwój w formie pakietów (np. programy 6-sesyjne)',
+        ],
+        cta: 'Zarezerwuj',
+      },
+      standard: {
+        name: 'Standard',
+        description: 'Indywidualny angielski zawodowy — nasz podstawowy program komunikacji w pracy.',
+        features: [
+          'Lekcje 1:1 wokół Twoich celów zawodowych',
+          'Rozmowy w pracy, spotkania i negocjacje',
+          'Słownictwo biznesowe i terminologia branżowa',
+          'Profesjonalne maile, raporty i dyskusje',
+          'Najlepsza równowaga ceny i wartości',
+        ],
+        cta: 'Zarezerwuj',
+      },
       essential: {
         name: 'Essential',
-        description: 'Dla profesjonalistów budujących podstawową płynność biznesową.',
+        description: 'Korporacyjne szkolenia grupowe z komunikacji — wartościowy, bardziej przystępny start dla zespołów.',
         features: [
-          '4 sesje na żywo miesięcznie',
-          'Biblioteka ćwiczeń we własnym tempie',
-          'Wsparcie e-mail i chat',
-          'Miesięczny raport postępów',
+          'Grupowe szkolenia komunikacyjne dla zespołów firmowych',
+          'Praktyczny angielski zawodowy w wspólnym środowisku',
+          'Spotkania, dyskusje i język w kontakcie z klientem',
+          'Mniej usług indywidualnych niż w Standard lub Premium',
         ],
-        cta: 'Zacznij',
-      },
-      professional: {
-        name: 'Professional',
-        description: 'Najpopularniejszy plan dla liderów i managerów.',
-        features: [
-          '8 sesji na żywo miesięcznie',
-          'Role-play branżowy',
-          'Przegląd prezentacji i feedback',
-          'Priorytetowe dopasowanie coacha',
-          'Integracja Slack / Teams',
-        ],
-        cta: 'Wypróbuj za darmo',
-      },
-      enterprise: {
-        name: 'Enterprise',
-        description: 'Dla zespołów rozwijających angielski w całej organizacji.',
-        features: [
-          'Nielimitowane miejsca w zespole',
-          'Dedykowany success manager',
-          'Program i KPI na miarę',
-          'SSO i panel administracyjny',
-          'Warsztaty stacjonarne',
-        ],
-        cta: 'Kontakt sprzedaż',
+        cta: 'Zarezerwuj',
       },
     },
   },
@@ -339,7 +782,7 @@ export default {
     formLead: 'Wypełnij formularz — odezwiemy się wkrótce.',
     firstName: 'Imię',
     lastName: 'Nazwisko',
-    workEmail: 'E-mail służbowy',
+    workEmail: 'E-mail',
     company: 'Firma (opcjonalnie)',
     interest: 'Interesuje mnie',
     selectProgram: 'Wybierz program',
@@ -353,6 +796,9 @@ export default {
     takeAssessment: 'Bezpłatny test poziomu',
     sendAnother: 'Wyślij kolejną wiadomość',
     interests: {
+      adults: 'Angielski dla profesjonalistów',
+      robotics: 'Programowanie AI i robotyki',
+      kids: 'Angielski dla dzieci',
       assessment: 'Bezpłatny test poziomu',
       business: 'Angielski biznesowy',
       corporate: 'Szkolenia korporacyjne',
@@ -396,10 +842,13 @@ export default {
   },
   footer: {
     tagline:
-      'Premium szkolenia angielskiego dla ambitnych profesjonalistów. Coaching na żywo, program branżowy i mierzalne efekty.',
+      'Angielski dla profesjonalistów, programowanie AI i robotyki oraz angielski dla dzieci. Nauka, która zaczyna się od prawdziwej rozmowy.',
     programs: 'Programy',
     company: 'Firma',
     links: {
+      adults: 'Angielski dla profesjonalistów',
+      robotics: 'Programowanie AI i robotyki',
+      kids: 'Angielski dla dzieci',
       business: 'Angielski biznesowy',
       corporate: 'Szkolenia korporacyjne',
       exam: 'Przygotowanie do egzaminów',

@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Login page — single viewport, no site footer, no scroll
+   ========================================================================== */
+
+html.is-login,
+body.is-login {
+  height: 100%;
+  overflow: hidden;
+}
+
+.main--login {
+  height: calc(100svh - var(--header-h, 72px));
+  overflow: hidden;
+}
+
+.login-page {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px var(--gutter, 16px);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(99, 102, 241, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 80%, rgba(45, 226, 230, 0.08) 0%, transparent 50%),
+    #f7f8fc;
+}
+
+.login-shell {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-height: 100%;
+}
+
+.login-card {
+  width: min(400px, 100%);
+  max-height: 100%;
+  padding: clamp(16px, 2.8vh, 32px) clamp(18px, 3.5vw, 32px);
+  background: #fff;
+  border: 1px solid var(--border, rgba(15, 23, 42, 0.08));
+  border-radius: 22px;
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+/* Skip reveal offset on login so the card never clips below the fold */
+.login-card.reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.login-eyebrow {
+  display: inline-flex;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary, #6366f1);
+}
+
+.login-title {
+  margin: 0 0 6px;
+  font-size: clamp(22px, 3.2vh, 32px);
+  line-height: 1.15;
+  color: var(--text-heading, #0f172a);
+}
+
+.login-lead {
+  margin: 0 0 clamp(12px, 2.2vh, 20px);
+  font-size: clamp(13px, 1.8vh, 15px);
+  line-height: 1.45;
+  color: var(--text, #475569);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.4vh, 12px);
+}
+
+.login-page .form-field label {
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.login-page .form-field input {
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.login-password-wrap {
+  position: relative;
+}
+
+.login-password-wrap input {
+  padding-right: 44px;
+  width: 100%;
+}
+
+.login-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-muted, #64748b);
+  cursor: pointer;
+}
+
+.login-password-toggle:hover {
+  color: var(--text-heading, #0f172a);
+  background: rgba(15, 23, 42, 0.05);
+}
+
+.login-error,
+.login-success {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.45;
+  border-radius: 10px;
+}
+
+.login-error {
+  color: #b42318;
+  background: #fef3f2;
+  border: 1px solid #fecdca;
+}
+
+.login-success {
+  color: #027a48;
+  background: #ecfdf3;
+  border: 1px solid #abefc6;
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.login-footer {
+  margin-top: clamp(10px, 1.6vh, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.login-link-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary, #6366f1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.login-link-btn:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .login-card {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+}

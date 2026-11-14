@@ -3,7 +3,7 @@ import pl from './translations/pl.js'
 import en from './translations/en.js'
 
 const STORAGE_KEY = 'cl_locale'
-const DEFAULT_LOCALE = 'pl'
+const DEFAULT_LOCALE = 'en'
 
 const TRANSLATIONS = { pl, en }
 
@@ -45,7 +45,7 @@ export function LanguageProvider({ children }) {
 
   const t = useCallback(
     (key, vars) => {
-      const dict = TRANSLATIONS[locale] ?? TRANSLATIONS.pl
+      const dict = TRANSLATIONS[locale] ?? TRANSLATIONS.en
       const value =
         resolve(dict, key) ??
         resolve(TRANSLATIONS.en, key) ??

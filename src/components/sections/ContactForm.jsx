@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { HiCheckCircle } from 'react-icons/hi'
 import { sendContactForm } from '../../services/emailjs'
 import { getContactFormError } from '../../utils/formErrors'
 import { useTranslation } from '../../i18n/useTranslation'
-import { CONTACT_FORM_INTERESTS, getContactFormSuccessCta } from '../../data/siteContent'
+import { CONTACT_FORM_INTERESTS } from '../../data/siteContent'
 
-export default function ContactForm() {
+export default function ContactForm({ defaultInterest = '' }) {
+  const initialInterest = CONTACT_FORM_INTERESTS.includes(defaultInterest)
+    ? defaultInterest
+    : ''
   const { t } = useTranslation()
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
@@ -31,7 +33,6 @@ export default function ContactForm() {
         firstName: data.get('firstName'),
         lastName: data.get('lastName'),
         email: data.get('email'),
-        company: data.get('company'),
         interest: interestKey,
         interestLabel: t(`contact.interests.${interestKey}`),
         message: data.get('message'),
@@ -45,7 +46,6 @@ export default function ContactForm() {
   }
 
   if (status === 'success') {
-    const successCta = getContactFormSuccessCta(t)
     return (
       <div className="contact-panel-body contact-panel-success">
         <div className="contact-success-icon" aria-hidden>
@@ -54,12 +54,9 @@ export default function ContactForm() {
         <h3>{t('contact.successTitle')}</h3>
         <p>{t('contact.successText')}</p>
         <div className="contact-success-actions">
-          <Link to={successCta.to} className={successCta.className}>
-            {successCta.label}
-          </Link>
           <button
             type="button"
-            className="btn btn-outline"
+            className="btn btn-primary"
             onClick={() => setStatus('idle')}
           >
             {t('contact.sendAnother')}
@@ -112,22 +109,12 @@ export default function ContactForm() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="company">{t('contact.company')}</label>
-          <input
-            id="company"
-            name="company"
-            type="text"
-            disabled={status === 'sending'}
-          />
-        </div>
-
-        <div className="form-field">
           <label htmlFor="interest">{t('contact.interest')}</label>
           <select
             id="interest"
             name="interest"
             required
-            defaultValue=""
+            defaultValue={initialInterest}
             disabled={status === 'sending'}
           >
             <option value="" disabled>
@@ -146,7 +133,7 @@ export default function ContactForm() {
           <textarea
             id="message"
             name="message"
-            rows={4}
+            rows={3}
             placeholder={t('contact.messagePlaceholder')}
             disabled={status === 'sending'}
           />

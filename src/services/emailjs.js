@@ -33,6 +33,9 @@ export function isEmailJsConfigured() {
 }
 
 const INTEREST_LABELS = {
+  adults: 'English for Professionals',
+  robotics: 'AI & Robotics Coding',
+  kids: 'English for Kids',
   business: 'Business English',
   corporate: 'Corporate training',
   exam: 'Exam preparation',
@@ -154,4 +157,40 @@ export async function sendContactForm({
     },
     { publicKey },
   )
+}
+
+/**
+ * Book-now session request — reuses the contact EmailJS template.
+ */
+export async function sendBookingForm({
+  firstName,
+  lastName,
+  email,
+  phone,
+  program,
+  programLabel,
+  packageId,
+  packageLabel,
+  date,
+  time,
+  notes,
+}) {
+  const bookingMessage = [
+    'Book now session request',
+    `Program: ${programLabel || program || '—'}`,
+    `Package: ${packageLabel || packageId || '—'}`,
+    `Preferred date: ${String(date ?? '').trim() || '—'}`,
+    `Preferred time: ${String(time ?? '').trim() || '—'}`,
+    `Phone: ${String(phone ?? '').trim() || '—'}`,
+    `Notes: ${String(notes ?? '').trim() || '—'}`,
+  ].join('\n')
+
+  return sendContactForm({
+    firstName,
+    lastName,
+    email,
+    interest: program,
+    interestLabel: `${programLabel || program} — ${packageLabel || packageId}`,
+    message: bookingMessage,
+  })
 }

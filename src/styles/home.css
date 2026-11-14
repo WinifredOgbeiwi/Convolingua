@@ -1,0 +1,715 @@
+/* ==========================================================================
+   Landing page — intro, program cards, about, contact
+   The three program cards are themed through CSS variables so each reads as its
+   own "mini website" (palette, typography, artwork) while sharing one frame:
+   same radius, same height, same internal rows.
+   ========================================================================== */
+
+:root {
+  --program-radius: 28px;
+  --program-gap: 24px;
+  --hero-pad: 24px;
+}
+
+.home-hero,
+.home-about,
+.home-contact,
+.program {
+  scroll-margin-top: var(--header-h);
+}
+
+/* ── Hero: the three cards fill the first screen ─────────────────────────── */
+.home-hero {
+  padding: var(--hero-pad) 0;
+  background: #fff;
+}
+
+/* ── Program cards ───────────────────────────────────────────────────────── */
+.programs {
+  width: min(var(--container), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--program-gap);
+  row-gap: var(--program-gap);
+  align-items: stretch;
+}
+
+.program {
+  --program-pad: clamp(24px, 2.4vw, 36px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--p-bg);
+  color: var(--p-text);
+  border-radius: var(--program-radius);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  will-change: transform; /* own layer: no hairline seams while the card moves */
+}
+
+.program:hover {
+  transform: translateY(-6px);
+  /* the hover effect lives on the card itself: lift, deeper shadow, accent ring */
+  box-shadow:
+    0 22px 48px rgba(15, 23, 42, 0.22),
+    0 0 0 3px color-mix(in srgb, var(--p-accent) 60%, transparent);
+}
+
+.program-visual {
+  position: relative;
+  flex: none;
+  height: clamp(200px, 17vw, 240px);
+  overflow: hidden;
+  background: var(--p-bg);
+}
+
+/* Soft fade from artwork into the text area */
+.program-visual::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -1px 0; /* overlaps the card body by 1px so no seam can show */
+  height: 45%;
+  background: linear-gradient(180deg, transparent 0%, var(--p-bg) 100%);
+  pointer-events: none;
+}
+
+.program-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.program-number {
+  position: absolute;
+  top: 20px;
+  left: var(--program-pad);
+  z-index: 2;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.program-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 4px var(--program-pad) var(--program-pad);
+}
+
+.program-tag {
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--p-accent);
+  background: var(--p-tag-bg);
+  border-radius: 999px;
+}
+
+.program-title {
+  margin: 0;
+  font-family: var(--p-font);
+  font-size: clamp(26px, 2.4vw, 32px);
+  font-weight: var(--p-title-weight, 700);
+  line-height: 1.12;
+  letter-spacing: var(--p-title-tracking, -0.02em);
+  color: var(--p-heading);
+  text-wrap: balance;
+}
+
+/* Stretched link: the whole card is clickable */
+.program-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: var(--program-radius);
+}
+
+.program,
+.program-link,
+.program-photo {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.program-link:focus-visible {
+  outline: none;
+}
+
+.program-link:focus-visible::after {
+  outline: 3px solid var(--p-accent);
+  outline-offset: -6px;
+}
+
+.program-desc {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+.program-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.program-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--p-points);
+}
+
+.program-points svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  color: var(--p-check);
+  background: var(--p-check-bg);
+  border-radius: 50%;
+}
+
+/* Visual-only button (the card itself is the link) */
+.program-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 13px 22px;
+  font-family: var(--p-font);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  min-height: 46px;
+  color: var(--p-cta-text);
+  background: var(--p-cta-bg);
+  border-radius: var(--p-cta-radius, 12px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.program-cta svg {
+  transition: transform 0.2s ease;
+}
+
+.program:hover .program-cta {
+  filter: brightness(1.06);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.program:hover .program-cta svg {
+  transform: translateX(4px);
+}
+
+/* Desktop: rows are shared across the three cards (subgrid), so tags, titles,
+   descriptions, bullet lists and buttons line up exactly, whatever the copy length. */
+@media (min-width: 961px) {
+  .programs {
+    row-gap: 0;
+    /* Fill exactly one screen: the artwork row flexes, the text rows keep their size. */
+    height: max(calc(100svh - var(--header-h) - 2 * var(--hero-pad)), 600px);
+    grid-template-rows: minmax(150px, 1fr) repeat(5, auto);
+  }
+
+  .program {
+    display: grid;
+    grid-row: span 6;
+    grid-template-rows: subgrid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .program-body {
+    display: contents;
+  }
+
+  .program-visual {
+    height: auto;
+    min-height: 0;
+  }
+
+  .program-tag,
+  .program-title,
+  .program-desc,
+  .program-points,
+  .program-cta {
+    margin-inline: var(--program-pad);
+  }
+
+  .program-tag {
+    justify-self: start;
+    align-self: start;
+    margin-top: 4px;
+  }
+
+  .program-title {
+    margin-top: 14px;
+  }
+
+  .program-desc {
+    margin-top: 14px;
+  }
+
+  .program-points {
+    margin-top: 16px;
+  }
+
+  .program-cta {
+    justify-self: start;
+    align-self: end;
+    margin-top: 24px;
+    margin-bottom: var(--program-pad);
+  }
+}
+
+/* ── Theme 01 · Adults — refined, editorial, deep indigo ─────────────────── */
+.program--adults {
+  --p-bg: #0c1233;
+  --p-text: #b9c0e6;
+  --p-heading: #ffffff;
+  --p-points: #e4e8ff;
+  --p-accent: #aab0ff;
+  --p-tag-bg: rgba(170, 176, 255, 0.14);
+  --p-check: #0c1233;
+  --p-check-bg: #aab0ff;
+  --p-cta-bg: #ffffff;
+  --p-cta-text: #0c1233;
+  --p-font: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --p-title-weight: 600;
+  --p-title-tracking: -0.015em;
+}
+
+.program--adults .program-photo {
+  object-position: 50% 35%;
+  filter: saturate(0.92) contrast(1.02);
+}
+
+.program--adults .program-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(160deg, rgba(82, 87, 242, 0.35) 0%, transparent 55%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.program--adults .program-cta {
+  font-family: var(--font);
+}
+
+/* ── Theme 02 · Robotics — dark, techy, neon cyan ────────────────────────── */
+.program--robotics {
+  --p-bg: #05111c;
+  --p-text: #9db4c6;
+  --p-heading: #f1fbff;
+  --p-points: #d3e8f4;
+  --p-accent: #2de2e6;
+  --p-tag-bg: rgba(45, 226, 230, 0.12);
+  --p-check: #05111c;
+  --p-check-bg: #2de2e6;
+  --p-cta-bg: #2de2e6;
+  --p-cta-text: #04202b;
+  --p-font: 'Space Grotesk', var(--font);
+  --p-title-weight: 700;
+  --p-title-tracking: -0.03em;
+}
+
+.program--robotics .program-tag {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(45, 226, 230, 0.35);
+  border-radius: 4px;
+}
+
+.program--robotics .program-number {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  border-radius: 4px;
+  color: #2de2e6;
+  background: rgba(45, 226, 230, 0.08);
+  border-color: rgba(45, 226, 230, 0.35);
+}
+
+.program--robotics .program-visual {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(45, 226, 230, 0.22) 0%, transparent 58%),
+    linear-gradient(rgba(45, 226, 230, 0.07) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgba(45, 226, 230, 0.07) 1px, transparent 1px) 0 0 / 32px 32px,
+    #061827;
+}
+
+.program--robotics .program-points svg {
+  border-radius: 4px;
+}
+
+/* Robot artwork */
+.robo-art {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.robo-svg {
+  height: 88%;
+  width: auto;
+  max-width: 82%;
+  filter: drop-shadow(0 0 28px rgba(45, 226, 230, 0.35));
+  animation: roboFloat 5s ease-in-out infinite;
+}
+
+.robo-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: roboBlink 4.5s infinite;
+}
+
+.robo-antenna,
+.robo-core {
+  animation: roboPulse 1.8s ease-in-out infinite;
+}
+
+.robo-chip {
+  position: absolute;
+  z-index: 2;
+  padding: 6px 12px;
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2de2e6;
+  background: rgba(5, 17, 28, 0.78);
+  border: 1px solid rgba(45, 226, 230, 0.4);
+  border-radius: 6px;
+  animation: roboFloat 6s ease-in-out infinite;
+}
+
+.robo-chip--a { top: 42%; left: 6%; animation-delay: -1s; }
+.robo-chip--b { top: 14%; right: 10%; color: #b6f03c; border-color: rgba(182, 240, 60, 0.45); animation-delay: -2.5s; }
+.robo-chip--c { bottom: 12%; left: 12%; color: #b6f03c; border-color: rgba(182, 240, 60, 0.45); animation-delay: -4s; }
+.robo-chip--d { bottom: 26%; right: 6%; animation-delay: -3s; }
+
+@keyframes roboFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes roboBlink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  97% { transform: scaleY(0.1); }
+}
+
+@keyframes roboPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* ── Theme 03 · Kids — dark honey panel + bright yellow accents ──────────── */
+.program--kids {
+  --p-bg: #2a1c08;
+  --p-text: #e8d5a0;
+  --p-heading: #fff6de;
+  --p-points: #f3e6c0;
+  --p-accent: #ffd34e;
+  --p-tag-bg: rgba(255, 211, 78, 0.14);
+  --p-check: #2a1c08;
+  --p-check-bg: #ffd34e;
+  --p-cta-bg: #ffd34e;
+  --p-cta-text: #2a1c08;
+  --p-cta-radius: 999px;
+  --p-font: 'Baloo 2', 'Nunito', var(--font);
+  --p-title-weight: 800;
+  --p-title-tracking: -0.005em;
+}
+
+.program--kids .program-visual {
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 40%, rgba(255, 211, 78, 0.22), transparent 55%),
+    #241808;
+}
+
+.program--kids .program-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(160deg, rgba(255, 157, 0, 0.28) 0%, transparent 55%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.program--kids .program-photo {
+  object-position: 38% 50%;
+  filter: saturate(0.95) contrast(1.04) brightness(0.92);
+}
+
+.program--kids .program-number {
+  color: #2a1c08;
+  background: rgba(255, 211, 78, 0.92);
+  border-color: transparent;
+}
+
+.program--kids .program-title {
+  line-height: 1.05;
+}
+
+.program--kids .program-desc {
+  font-weight: 500;
+}
+
+.program--kids .program-tag {
+  color: #ffd34e;
+  border: 1px solid rgba(255, 211, 78, 0.28);
+}
+
+.program--kids .program-cta {
+  font-size: 16px;
+  box-shadow: 0 4px 0 #c49a18;
+}
+
+.program--kids:hover .program-cta {
+  box-shadow: 0 6px 0 #c49a18;
+  transform: translateY(-2px);
+}
+
+/* ── Empty program pages ─────────────────────────────────────────────────── */
+.program-page {
+  min-height: 60vh;
+}
+
+/* ── About ───────────────────────────────────────────────────────────────── */
+.home-about {
+  background: #fff;
+}
+
+.home-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+
+.home-about-media {
+  position: relative;
+}
+
+.home-about-media::before {
+  content: '';
+  position: absolute;
+  inset: 24px -20px -20px 24px;
+  background: var(--primary-light);
+  border-radius: var(--radius-xl);
+  z-index: 0;
+}
+
+.home-about-media img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.home-about-copy .section-title {
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.home-about-copy > p {
+  margin: 0 0 16px;
+  font-size: 16.5px;
+  line-height: 1.75;
+}
+
+.home-values {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.home-values li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.home-value-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  color: var(--primary);
+  background: var(--primary-light);
+  border-radius: 14px;
+}
+
+.home-values h3 {
+  margin: 2px 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.home-values p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ── Contact ─────────────────────────────────────────────────────────────── */
+.home-contact {
+  background: #fff;
+}
+
+.home-contact .section-header {
+  margin-bottom: 40px;
+}
+
+.home-contact .contact-panel {
+  min-height: 0;
+}
+
+.contact-info-title {
+  margin: 0 0 24px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-heading);
+}
+
+/* ── Header tweaks ───────────────────────────────────────────────────────── */
+.header-cta {
+  white-space: nowrap;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .programs {
+    grid-template-columns: 1fr;
+    max-width: 960px;
+  }
+}
+
+/* Tablet: each program card becomes a horizontal band (artwork | copy) */
+@media (min-width: 641px) and (max-width: 960px) {
+  .program {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+  }
+
+  .program:nth-child(even) .program-visual {
+    order: 2;
+  }
+
+  .program-visual {
+    height: auto;
+  }
+
+  .program-visual::after {
+    display: none;
+  }
+
+  .program-body {
+    justify-content: center;
+    padding: 40px clamp(28px, 5vw, 56px);
+  }
+
+  .program-cta {
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .home-about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-about-media {
+    max-width: 560px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .header-actions .lang-switcher {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-hero {
+    --hero-pad: 16px;
+    padding-bottom: 48px;
+  }
+
+  .programs {
+    --program-gap: 20px;
+  }
+
+  .program {
+    --program-radius: 24px;
+  }
+
+  .program-visual {
+    height: 240px;
+  }
+
+  .program-cta {
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .home-about-media {
+    margin-right: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .robo-svg,
+  .robo-eyes,
+  .robo-antenna,
+  .robo-core,
+  .robo-chip {
+    animation: none;
+  }
+
+  .program,
+  .program-cta,
+  .program-cta svg {
+    transition: none;
+  }
+
+  .program:hover,
+  .program:hover .program-cta svg,
+  .program--kids:hover .program-cta {
+    transform: none;
+  }
+}

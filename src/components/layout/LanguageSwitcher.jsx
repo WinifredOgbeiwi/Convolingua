@@ -1,5 +1,8 @@
 import { useTranslation } from '../../i18n/useTranslation'
 
+// English first: it is the default language.
+const LOCALES = ['en', 'pl']
+
 export default function LanguageSwitcher({ className = '' }) {
   const { locale, setLocale, t } = useTranslation()
 
@@ -9,22 +12,17 @@ export default function LanguageSwitcher({ className = '' }) {
       role="group"
       aria-label={t('lang.label')}
     >
-      <button
-        type="button"
-        className={locale === 'pl' ? 'active' : undefined}
-        onClick={() => setLocale('pl')}
-        aria-pressed={locale === 'pl'}
-      >
-        {t('lang.pl')}
-      </button>
-      <button
-        type="button"
-        className={locale === 'en' ? 'active' : undefined}
-        onClick={() => setLocale('en')}
-        aria-pressed={locale === 'en'}
-      >
-        {t('lang.en')}
-      </button>
+      {LOCALES.map((code) => (
+        <button
+          key={code}
+          type="button"
+          className={locale === code ? 'active' : undefined}
+          onClick={() => setLocale(code)}
+          aria-pressed={locale === code}
+        >
+          {t(`lang.${code}`)}
+        </button>
+      ))}
     </div>
   )
 }

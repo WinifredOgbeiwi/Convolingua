@@ -1,5 +1,5 @@
 .container {
-  width: min(var(--container), 100% - 48px);
+  width: min(var(--container), 100% - 2 * var(--gutter));
   margin-inline: auto;
 }
 
@@ -1461,10 +1461,6 @@ a.contact-detail-value:hover {
 }
 
 @media (max-width: 640px) {
-  .container {
-    width: min(var(--container), 100% - 32px);
-  }
-
   .hero-form {
     flex-direction: column;
     padding: 12px;
